@@ -355,22 +355,22 @@ export default function Home() {
             whileInView={{ opacity: 1 }}
             className="text-center mt-32"
           >
-            <div className="inline-block p-1 bg-gradient-to-r from-border via-foreground to-border rounded-full mb-12">
-              <div className="px-8 py-4 bg-background rounded-full">
-                <span className="text-xl font-display font-bold italic tracking-wider">{content.timeline.final_reveal}</span>
-              </div>
-            </div>
-
             {/* THE REVEAL - MOVED HERE */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 50 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2, ease: "easeOut" }}
-              className="w-full max-w-4xl mx-auto shadow-2xl rounded-xl overflow-hidden border border-white/10"
+              className="w-full max-w-4xl mx-auto shadow-2xl rounded-xl overflow-hidden border border-white/10 mb-12"
             >
               <BartFormation />
             </motion.div>
+
+            <div className="inline-block p-1 bg-gradient-to-r from-border via-foreground to-border rounded-full">
+              <div className="px-8 py-4 bg-background rounded-full">
+                <span className="text-xl font-display font-bold italic tracking-wider">{content.timeline.final_reveal}</span>
+              </div>
+            </div>
 
           </motion.div>
         </div>
