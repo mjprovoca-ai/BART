@@ -307,11 +307,8 @@ export default function Home() {
       <section id="timeline" className="py-32 relative">
         <div className="container px-6 mx-auto">
           <div className="max-w-3xl mb-24">
-            <h2 className="text-5xl md:text-7xl font-display font-bold tracking-tight mb-8">
-              {content.timeline.title1} <br/>{content.timeline.title2}
-            </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              {content.timeline.subtitle}
+            <p className="text-xl text-muted-foreground leading-relaxed mb-4">
+              Uma jornada da troca direta à descentralização absoluta.
             </p>
           </div>
 
@@ -367,8 +364,9 @@ export default function Home() {
             </motion.div>
 
             <div className="inline-block p-1 bg-gradient-to-r from-border via-foreground to-border rounded-full">
-              <div className="px-8 py-4 bg-background rounded-full">
-                <span className="text-xl font-display font-bold italic tracking-wider">{content.timeline.final_reveal}</span>
+              <div className="px-8 py-4 bg-background rounded-full text-center">
+                <span className="block text-xl font-display font-bold italic tracking-wider mb-2">{content.timeline.title1} {content.timeline.title2}</span>
+                <span className="text-sm text-muted-foreground tracking-widest uppercase">{content.timeline.final_reveal}</span>
               </div>
             </div>
 
