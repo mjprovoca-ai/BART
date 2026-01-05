@@ -111,7 +111,7 @@ export default function BartFormation() {
           transition={{ delay: 1, duration: 1 }}
           className="text-sm uppercase tracking-[0.5em] text-muted-foreground"
         >
-          Blockchain Alternative Runtime
+          Bar Coin Protocol
         </motion.p>
       </div>
     </div>

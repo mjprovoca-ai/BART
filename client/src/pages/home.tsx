@@ -282,7 +282,7 @@ export default function Home() {
                 { label: content.stats.active_nodes, value: "1,240" },
                 { label: content.stats.block_height, value: "#8,992,102" },
                 { label: content.stats.transactions, value: "45.2M+" },
-                { label: content.stats.avg_fee, value: "< $0.001" }
+                { label: content.stats.avg_fee, value: "< 0.001 BAR" }
               ].map((stat, i) => (
                 <motion.div 
                   key={stat.label}
