@@ -230,7 +230,7 @@ export default function Home() {
               <span className="text-xs font-mono uppercase tracking-widest">{content.hero.badge}</span>
             </div>
             
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-bold tracking-tighter leading-[0.9] mb-8">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-display font-bold tracking-tighter leading-[0.9] mb-8">
               {content.hero.title1} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-foreground to-muted-foreground">{content.hero.title2}</span>
             </h1>
