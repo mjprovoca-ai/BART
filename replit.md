@@ -40,8 +40,25 @@ Preferred communication style: Simple, everyday language.
 ### Pages and Features
 - **Home** (`/`): Landing page with hero section, network stats, timeline, and 3D BART formation effect
 - **Whitepaper** (`/whitepaper`): Protocol documentation and vision
+- **Tokenize** (`/tokenize`): Asset tokenization with AI pricing simulation
+- **Marketplace** (`/marketplace`): NFT marketplace for trading tokenized assets
+- **Profile** (`/profile`): User profile with wallet balance and NFT holdings
+- **DAO** (`/dao`): Governance page for creating and voting on proposals
+- **Sale** (`/sale`): Token sale page with Seed, Private, and Public phases
 - **Theme System**: Dark/light mode toggle with localStorage persistence
-- **Internationalization**: Built-in Portuguese/English language toggle
+- **Internationalization**: Full support for English, Portuguese, French, and Mandarin
+
+### Smart Contracts (Ready for Deployment)
+Located in `contracts/` folder:
+- **BARToken.sol**: ERC-20 token with 100M total supply, team vesting (2 years), and burn mechanics
+- **BARTokenSale.sol**: Multi-phase token sale (Seed $0.01, Private $0.025, Public $0.05) with whitelist support
+- **BARDAO.sol**: Governance contract with proposal creation, voting (1 BAR = 1 vote), and 10% quorum
+
+### Contract Integration
+- **ABIs**: Located in `client/src/contracts/abis.ts`
+- **Config**: Network addresses and tokenomics in `client/src/contracts/config.ts`
+- **Hooks**: Wagmi hooks for contract interaction in `client/src/hooks/useContracts.ts`
+- **Status**: Contracts need to be deployed to Base/Base Sepolia; frontend uses mock data until deployment
 
 ## External Dependencies
 
