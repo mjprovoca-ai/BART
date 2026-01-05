@@ -1,11 +1,10 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Text3D, Center, Sparkles, Float, Environment, PerspectiveCamera } from "@react-three/drei";
-import { useRef, useState, useMemo } from "react";
+import { useRef, useState, useMemo, useEffect, Suspense } from "react";
 import * as THREE from "three";
 import { motion } from "framer-motion";
 
 function Particles({ count = 200 }) {
-  // Generate random particles that float around
   const points = useMemo(() => {
     const p = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
@@ -41,7 +40,6 @@ function Particles({ count = 200 }) {
 function BartText() {
   const meshRef = useRef<THREE.Mesh>(null);
   
-  // Subtle rotation animation
   useFrame((state) => {
     if (meshRef.current) {
       meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
@@ -78,29 +76,82 @@ function BartText() {
   );
 }
 
+function Scene() {
+  return (
+    <>
+      <PerspectiveCamera makeDefault position={[0, 0, 8]} />
+      <ambientLight intensity={0.5} />
+      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
+      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#475569" />
+      <BartText />
+      <Sparkles 
+        count={150} 
+        scale={12} 
+        size={4} 
+        speed={0.4} 
+        opacity={0.5} 
+        color="#ffffff" 
+      />
+      <Environment preset="city" />
+    </>
+  );
+}
+
+function FallbackDisplay() {
+  return (
+    <div className="w-full h-full flex items-center justify-center bg-gradient-to-b from-background to-secondary/30">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1 }}
+        className="text-center"
+      >
+        <h2 className="text-7xl md:text-9xl font-display font-black tracking-tighter text-foreground">
+          BART
+        </h2>
+        <p className="text-sm uppercase tracking-[0.5em] text-muted-foreground mt-4">
+          Bar Coin Protocol
+        </p>
+      </motion.div>
+    </div>
+  );
+}
+
 export default function BartFormation() {
+  const [webGLSupported, setWebGLSupported] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    try {
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) {
+        setWebGLSupported(false);
+      }
+    } catch (e) {
+      setWebGLSupported(false);
+    }
+  }, []);
+
+  if (!webGLSupported || hasError) {
+    return (
+      <div className="w-full h-[600px] relative overflow-hidden bg-gradient-to-b from-transparent to-background/20 rounded-xl border border-white/10">
+        <FallbackDisplay />
+      </div>
+    );
+  }
+
   return (
     <div className="w-full h-[600px] relative overflow-hidden bg-gradient-to-b from-transparent to-background/20 rounded-xl border border-white/10">
       <div className="absolute inset-0 z-0">
-        <Canvas gl={{ antialias: true, alpha: true }}>
-          <PerspectiveCamera makeDefault position={[0, 0, 8]} />
-          
-          <ambientLight intensity={0.5} />
-          <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
-          <pointLight position={[-10, -10, -10]} intensity={0.5} color="#475569" />
-          
-          <BartText />
-          
-          <Sparkles 
-            count={150} 
-            scale={12} 
-            size={4} 
-            speed={0.4} 
-            opacity={0.5} 
-            color="#ffffff" 
-          />
-          
-          <Environment preset="city" />
+        <Canvas 
+          gl={{ antialias: true, alpha: true, failIfMajorPerformanceCaveat: false }}
+          onCreated={() => {}}
+          onError={() => setHasError(true)}
+        >
+          <Suspense fallback={null}>
+            <Scene />
+          </Suspense>
         </Canvas>
       </div>
       
