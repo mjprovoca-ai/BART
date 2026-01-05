@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 /**
  * @title BARDAO
- * @dev Decentralized Autonomous Organization for BancBart Protocol
+ * @dev Decentralized Autonomous Organization for BankBart Protocol
  * 
  * Governance Rules:
  * - 1 BAR = 1 vote

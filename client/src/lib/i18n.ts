@@ -100,7 +100,7 @@ export const translations = {
     },
     dao: {
       title: "Governança DAO",
-      desc: "Participe da governança do BancBart. Vote em propostas e molde o futuro do protocolo.",
+      desc: "Participe da governança do BankBart. Vote em propostas e molde o futuro do protocolo.",
       treasury: "Saldo do Tesouro",
       proposals: "Propostas Ativas",
       voting_power: "Seu Poder de Voto",
@@ -124,7 +124,7 @@ export const translations = {
     },
     sale: {
       title: "Venda de Tokens BAR",
-      desc: "Junte-se à revolução BancBart. Compre tokens BAR e faça parte da economia do futuro.",
+      desc: "Junte-se à revolução BankBart. Compre tokens BAR e faça parte da economia do futuro.",
       phase: "Fase Atual",
       not_started: "Não Iniciada",
       seed: "Venda Seed",
@@ -246,7 +246,7 @@ export const translations = {
     },
     dao: {
       title: "DAO Governance",
-      desc: "Participate in BancBart governance. Vote on proposals and shape the future of the protocol.",
+      desc: "Participate in BankBart governance. Vote on proposals and shape the future of the protocol.",
       treasury: "Treasury Balance",
       proposals: "Active Proposals",
       voting_power: "Your Voting Power",
@@ -270,7 +270,7 @@ export const translations = {
     },
     sale: {
       title: "BAR Token Sale",
-      desc: "Join the BancBart revolution. Purchase BAR tokens and become part of the future economy.",
+      desc: "Join the BankBart revolution. Purchase BAR tokens and become part of the future economy.",
       phase: "Current Phase",
       not_started: "Not Started",
       seed: "Seed Sale",
@@ -392,7 +392,7 @@ export const translations = {
     },
     dao: {
       title: "Gouvernance DAO",
-      desc: "Participez à la gouvernance de BancBart. Votez sur les propositions et façonnez l'avenir du protocole.",
+      desc: "Participez à la gouvernance de BankBart. Votez sur les propositions et façonnez l'avenir du protocole.",
       treasury: "Solde du trésor",
       proposals: "Propositions actives",
       voting_power: "Votre pouvoir de vote",
@@ -416,7 +416,7 @@ export const translations = {
     },
     sale: {
       title: "Vente de jetons BAR",
-      desc: "Rejoignez la révolution BancBart. Achetez des jetons BAR et faites partie de l'économie future.",
+      desc: "Rejoignez la révolution BankBart. Achetez des jetons BAR et faites partie de l'économie future.",
       phase: "Phase actuelle",
       not_started: "Non commencée",
       seed: "Vente Seed",
@@ -538,7 +538,7 @@ export const translations = {
     },
     dao: {
       title: "DAO 治理",
-      desc: "参与 BancBart 治理。对提案进行投票并塑造协议的未来。",
+      desc: "参与 BankBart 治理。对提案进行投票并塑造协议的未来。",
       treasury: "资金库余额",
       proposals: "活跃提案",
       voting_power: "您的投票权",
@@ -562,7 +562,7 @@ export const translations = {
     },
     sale: {
       title: "BAR 代币销售",
-      desc: "加入 BancBart 革命。购买 BAR 代币并成为未来经济的一部分。",
+      desc: "加入 BankBart 革命。购买 BAR 代币并成为未来经济的一部分。",
       phase: "当前阶段",
       not_started: "未开始",
       seed: "种子轮销售",
