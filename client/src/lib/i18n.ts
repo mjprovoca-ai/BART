@@ -41,6 +41,28 @@ export const translations = {
       tagline: "Economia descentralizada para todos.",
       footer: "BartBank Protocol — Lançamento Q1 2026 — Blockchain Base"
     },
+    footer: {
+      cols: [
+        {
+          title: "Protocolo",
+          links: ["Governança", "Tokenomics", "Staking", "Bridge"]
+        },
+        {
+          title: "Ecossistema",
+          links: ["Carteiras", "Exploradores", "DApps", "Comunidade"]
+        },
+        {
+          title: "Desenvolvedores",
+          links: ["Documentação", "GitHub", "SDKs", "Auditorias"]
+        },
+        {
+          title: "Legal",
+          links: ["Privacidade", "Termos", "Licenças", "Contato"]
+        }
+      ],
+      rights: "© 2026 BartBank Protocol. Todos os direitos reservados.",
+      status: "Mainnet Beta"
+    },
     tokenize: {
       title: "Tokenize seu Ativo",
       desc: "Faça upload do seu ativo, nossa IA vai precificá-lo e você receberá BAR instantaneamente.",

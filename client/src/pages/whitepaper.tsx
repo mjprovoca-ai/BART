@@ -22,7 +22,8 @@ export default function Whitepaper() {
     { id: "interop", title: content.sections[1].title, icon: <Cpu className="w-6 h-6" />, text: content.sections[1].text },
     { id: "poh", title: content.sections[2].title, icon: <ShieldCheck className="w-6 h-6" />, text: content.sections[2].text },
     { id: "ancestral", title: content.sections[3].title, icon: <Users className="w-6 h-6" />, text: content.sections[3].text },
-    { id: "tokenomics", title: content.sections[4].title, icon: <Coins className="w-6 h-6" />, text: content.sections[4].text }
+    { id: "tokenomics", title: content.sections[4].title, icon: <Coins className="w-6 h-6" />, text: content.sections[4].text },
+    { id: "sale", title: content.sections[5].title, icon: <TrendingUp className="w-6 h-6" />, text: content.sections[5].text }
   ];
 
   const tokenDistribution = [
