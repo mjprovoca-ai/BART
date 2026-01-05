@@ -27,7 +27,7 @@ export default function Home() {
         title1: "DESCENTRALIZE",
         title2: "TUDO",
         desc: "Um novo primitivo econômico para a era digital. Construído em Substrate, projetado para humanos, protegido pela matemática.",
-        cta_primary: "Começar a Construir",
+        cta_primary: "Tokenizar Ativo",
         cta_secondary: "Ler Whitepaper"
       },
       stats: {
@@ -87,7 +87,7 @@ export default function Home() {
         title1: "DECENTRALIZE",
         title2: "EVERYTHING",
         desc: "A new economic primitive for the digital age. Built on Substrate, designed for humans, secured by math.",
-        cta_primary: "Start Building",
+        cta_primary: "Tokenize Asset",
         cta_secondary: "Read Whitepaper"
       },
       stats: {
@@ -241,7 +241,12 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="h-14 px-8 rounded-full text-lg w-full md:w-auto group">
+              <Button 
+                size="lg" 
+                className="h-14 px-8 rounded-full text-lg w-full md:w-auto group"
+                onClick={() => setLocation("/tokenize")}
+                data-testid="button-start-building"
+              >
                 {content.hero.cta_primary}
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -250,6 +255,7 @@ export default function Home() {
                 size="lg" 
                 className="h-14 px-8 rounded-full text-lg w-full md:w-auto"
                 onClick={() => setLocation("/whitepaper")}
+                data-testid="button-whitepaper"
               >
                 {content.hero.cta_secondary}
               </Button>
