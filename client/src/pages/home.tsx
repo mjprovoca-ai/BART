@@ -201,19 +201,17 @@ export default function Home() {
             <a href="#solution" className="hover:text-foreground transition-colors">{content.nav.technology}</a>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <Button 
               variant="ghost" 
               size="icon" 
               onClick={toggleLang}
-              className="rounded-full w-10 h-10 hover:bg-accent"
+              className="rounded-full w-8 h-8 md:w-10 md:h-10 hover:bg-accent"
             >
               <span className="font-bold text-xs">{lang.toUpperCase()}</span>
             </Button>
             <ThemeToggle />
-            <div className="hidden md:block">
-              <ConnectWalletButton label={content.nav.connect} />
-            </div>
+            <ConnectWalletButton label={content.nav.connect} />
           </div>
         </div>
       </nav>
