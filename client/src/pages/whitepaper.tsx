@@ -27,10 +27,10 @@ export default function Whitepaper() {
 
   const tokenDistribution = [
     { label: content.distribution.items[0], percent: 40, color: "bg-foreground" },
-    { label: content.distribution.items[1], percent: 25, color: "bg-foreground/70" },
+    { label: content.distribution.items[1], percent: 30, color: "bg-foreground/70" },
     { label: content.distribution.items[2], percent: 15, color: "bg-foreground/50" },
-    { label: content.distribution.items[3], percent: 12, color: "bg-foreground/30" },
-    { label: content.distribution.items[4], percent: 8, color: "bg-foreground/20" }
+    { label: content.distribution.items[3], percent: 10, color: "bg-foreground/30" },
+    { label: content.distribution.items[4], percent: 5, color: "bg-foreground/20" }
   ];
 
   return (
@@ -101,7 +101,7 @@ export default function Whitepaper() {
           <div className="mt-12 grid grid-cols-3 gap-4 text-center">
             <div className="p-6 bg-foreground/5 rounded-xl"><div className="text-3xl font-display font-bold">0.3%</div><div className="text-xs text-muted-foreground mt-1">{content.revenue.stats[0]}</div></div>
             <div className="p-6 bg-foreground/5 rounded-xl"><div className="text-3xl font-display font-bold">0.1%</div><div className="text-xs text-muted-foreground mt-1">{content.revenue.stats[1]}</div></div>
-            <div className="p-6 bg-foreground/5 rounded-xl"><div className="text-3xl font-display font-bold">12%</div><div className="text-xs text-muted-foreground mt-1">{content.revenue.stats[2]}</div></div>
+            <div className="p-6 bg-foreground/5 rounded-xl"><div className="text-3xl font-display font-bold">$1.2M</div><div className="text-xs text-muted-foreground mt-1">{content.revenue.stats[2]}</div></div>
           </div>
         </motion.section>
 

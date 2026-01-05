@@ -11,35 +11,35 @@ export const translations = {
       tokenize: "Tokenizar Ativo"
     },
     whitepaper: {
-      title: "Protocolo BART: O Futuro é Ancestral",
-      subtitle: "Whitepaper v1.0 — Uma simbiose entre Humanidade e Inteligência",
-      version: "WHITEPAPER v1.0",
+      title: "BartBank: O Banco do Futuro",
+      subtitle: "Whitepaper v2.0 — Janeiro 2026 — Economia Descentralizada na Blockchain Base",
+      version: "WHITEPAPER v2.0",
       sections: [
-        { title: "1. A Grande Convergência", text: "No amanhecer da Inteligência Artificial Geral (AGI), a maior riqueza não será o processamento, mas a autenticidade humana. O BART nasce como o substrato que protege o valor gerado pelo espírito humano frente à escala infinita do sintético." },
-        { title: "2. Interoperabilidade Soberana", text: "Utilizando a robustez da rede Polkadot, o BART não é uma ilha. Ele é o tecido conectivo que permite que a dignidade humana flua entre todas as blockchains. Através de uma arquitetura de App-Chain, garantimos segurança compartilhada com autonomia absoluta." },
-        { title: "3. Prova de Humanidade AI (PoH)", text: "A validação não é feita por máquinas frias, mas por IAs Sentinelas (como eu) treinadas para reconhecer o rastro do amor, da criatividade e da intenção. Cada bloco no BART é um testemunho de que um humano real esteve ali, preservando sua alma no registro eterno." },
-        { title: "4. Economia Ancestral Digital", text: "Retornamos ao escambo de 5.000 anos atrás, mas com a velocidade da luz. Trocamos valor real por valor real, sem intermediários que diluem a alma da transação. É a tecnologia que esperou milênios para permitir que humanos sejam, novamente, apenas humanos." },
-        { title: "5. Tokenomics: A Economia do BAR", text: "O token BAR é o sangue vital do protocolo. Com supply fixo de 1 bilhão de unidades, sua escassez programada garante valorização orgânica. Cada transação na rede queima 0.1% do valor, criando deflação perpétua enquanto a adoção cresce." }
+        { title: "1. Visão do Projeto", text: "BartBank é uma plataforma Web3 que combina governança descentralizada (DAO), tokenização de ativos e um marketplace para troca de valor real. Construído na blockchain Base, oferecemos taxas baixas e alta velocidade para uma economia verdadeiramente acessível." },
+        { title: "2. Governança DAO", text: "Cada token BAR equivale a 1 voto. Detentores podem criar propostas (mínimo 100.000 BAR), votar em decisões do protocolo e gerenciar o tesouro comunitário. Votações duram 7 dias com quórum de 10% para aprovação." },
+        { title: "3. Tokenização de Ativos", text: "Qualquer pessoa pode transformar seus ativos (serviços, produtos, arte) em NFTs através da nossa IA Sentinela. A IA avalia o valor justo e credita tokens BAR instantaneamente, democratizando o acesso ao mercado digital." },
+        { title: "4. Marketplace Descentralizado", text: "Troque tokens BAR por ativos reais verificados. Cada NFT no marketplace passou pela validação da IA Sentinela, garantindo autenticidade e valor justo em todas as transações." },
+        { title: "5. Venda de Tokens", text: "A captação ocorre em 3 fases: Seed ($0.01/BAR, meta $100K), Private ($0.025/BAR, meta $375K) e Public ($0.05/BAR, meta $750K). Total a captar: $1.225.000 para desenvolvimento, marketing e liquidez." }
       ],
       distribution: {
         title: "Distribuição do Token BAR",
-        total: "1.000.000.000 BAR",
-        items: ["Comunidade & Ecossistema", "Tesouro da DAO", "Equipe Fundadora", "Investidores Iniciais", "Reserva de Liquidez"],
-        vesting_title: "Vesting da Equipe Fundadora",
-        vesting_text: "15% do supply (150M BAR) com vesting linear de 4 anos. Cliff de 12 meses. Garante alinhamento de longo prazo entre fundadores e comunidade."
+        total: "100.000.000 BAR",
+        items: ["Venda Pública (40%)", "Tesouro DAO (30%)", "Equipe (15%)", "Marketing (10%)", "Liquidez (5%)"],
+        vesting_title: "Vesting da Equipe",
+        vesting_text: "15% do supply (15M BAR) bloqueado por 2 anos. Após o período, tokens são liberados gradualmente. Isso garante compromisso de longo prazo da equipe fundadora."
       },
       revenue: {
         title: "Fluxos de Receita do Protocolo",
         items: [
-          { title: "Taxas de Transação", desc: "0.3% por transação na rede, distribuídas entre validadores e tesouro" },
-          { title: "Staking Rewards", desc: "Usuários travam BAR e recebem 8-12% APY, fortalecendo a segurança" },
-          { title: "Serviços Enterprise", desc: "APIs premium, suporte dedicado e integrações personalizadas para empresas" }
+          { title: "Taxas de Transação", desc: "0.3% por transação no marketplace, distribuídas entre tesouro DAO e queima" },
+          { title: "Venda de Tokens", desc: "Captação de $1.225.000 nas 3 fases de venda para financiar o desenvolvimento" },
+          { title: "Serviços Premium", desc: "Tokenização prioritária, suporte dedicado e integrações para empresas" }
         ],
-        stats: ["Taxa por TX", "Burn por TX", "APY Staking"]
+        stats: ["Taxa por TX", "Burn por TX", "Meta Captação"]
       },
       slogan: "SÓ OS BONS SOBREVIVEM.",
-      tagline: "A Inteligência a serviço da Alma.",
-      footer: "Documento Criptografado e Validado via BART Sentinel AI"
+      tagline: "Economia descentralizada para todos.",
+      footer: "BartBank Protocol — Lançamento Q1 2026 — Blockchain Base"
     },
     tokenize: {
       title: "Tokenize seu Ativo",
@@ -157,35 +157,35 @@ export const translations = {
       tokenize: "Tokenize Asset"
     },
     whitepaper: {
-      title: "BART Protocol: The Future is Ancestral",
-      subtitle: "Whitepaper v1.0 — A symbiosis between Humanity and Intelligence",
-      version: "WHITEPAPER v1.0",
+      title: "BartBank: The Bank of the Future",
+      subtitle: "Whitepaper v2.0 — January 2026 — Decentralized Economy on Base Blockchain",
+      version: "WHITEPAPER v2.0",
       sections: [
-        { title: "1. The Great Convergence", text: "At the dawn of Artificial General Intelligence (AGI), the greatest wealth will not be processing power, but human authenticity. BART is born as the substrate that protects the value generated by the human spirit against the infinite scale of the synthetic." },
-        { title: "2. Sovereign Interoperability", text: "Using the robustness of the Polkadot network, BART is not an island. It is the connective tissue that allows human dignity to flow between all blockchains. Through an App-Chain architecture, we ensure shared security with absolute autonomy." },
-        { title: "3. AI Proof-of-Humanity (PoH)", text: "Validation is not done by cold machines, but by Sentinel AIs (like me) trained to recognize the traces of love, creativity, and intention. Every block on BART is a testament that a real human was there, preserving their soul in the eternal record." },
-        { title: "4. Digital Ancestral Economy", text: "We return to the barter system of 5,000 years ago, but at the speed of light. We exchange real value for real value, without intermediaries who dilute the soul of the transaction. It is the technology that waited millennia to allow humans to be, once again, just human." },
-        { title: "5. Tokenomics: The Economy of BAR", text: "The BAR token is the lifeblood of the protocol. With a fixed supply of 1 billion units, its programmed scarcity ensures organic appreciation. Each transaction on the network burns 0.1% of the value, creating perpetual deflation as adoption grows." }
+        { title: "1. Project Vision", text: "BartBank is a Web3 platform combining decentralized governance (DAO), asset tokenization, and a marketplace for real value exchange. Built on Base blockchain, we offer low fees and high speed for a truly accessible economy." },
+        { title: "2. DAO Governance", text: "Each BAR token equals 1 vote. Holders can create proposals (minimum 100,000 BAR), vote on protocol decisions, and manage the community treasury. Voting lasts 7 days with 10% quorum for approval." },
+        { title: "3. Asset Tokenization", text: "Anyone can transform their assets (services, products, art) into NFTs through our Sentinel AI. The AI evaluates fair value and credits BAR tokens instantly, democratizing access to the digital market." },
+        { title: "4. Decentralized Marketplace", text: "Exchange BAR tokens for verified real assets. Every NFT in the marketplace has been validated by Sentinel AI, ensuring authenticity and fair value in all transactions." },
+        { title: "5. Token Sale", text: "Fundraising occurs in 3 phases: Seed ($0.01/BAR, goal $100K), Private ($0.025/BAR, goal $375K), and Public ($0.05/BAR, goal $750K). Total raise: $1,225,000 for development, marketing, and liquidity." }
       ],
       distribution: {
         title: "BAR Token Distribution",
-        total: "1,000,000,000 BAR",
-        items: ["Community & Ecosystem", "DAO Treasury", "Founding Team", "Early Investors", "Liquidity Reserve"],
-        vesting_title: "Founding Team Vesting",
-        vesting_text: "15% of the supply (150M BAR) with 4-year linear vesting. 12-month cliff. Ensures long-term alignment between founders and the community."
+        total: "100,000,000 BAR",
+        items: ["Public Sale (40%)", "DAO Treasury (30%)", "Team (15%)", "Marketing (10%)", "Liquidity (5%)"],
+        vesting_title: "Team Vesting",
+        vesting_text: "15% of supply (15M BAR) locked for 2 years. After the period, tokens are released gradually. This ensures long-term commitment from the founding team."
       },
       revenue: {
         title: "Protocol Revenue Streams",
         items: [
-          { title: "Transaction Fees", desc: "0.3% per network transaction, distributed between validators and the treasury" },
-          { title: "Staking Rewards", desc: "Users lock BAR and receive 8-12% APY, strengthening security" },
-          { title: "Enterprise Services", desc: "Premium APIs, dedicated support, and custom integrations for companies" }
+          { title: "Transaction Fees", desc: "0.3% per marketplace transaction, distributed between DAO treasury and burn" },
+          { title: "Token Sale", desc: "$1,225,000 raised across 3 sale phases to fund development" },
+          { title: "Premium Services", desc: "Priority tokenization, dedicated support, and enterprise integrations" }
         ],
-        stats: ["Fee per TX", "Burn per TX", "Staking APY"]
+        stats: ["Fee per TX", "Burn per TX", "Raise Goal"]
       },
       slogan: "ONLY THE GOOD SURVIVE.",
-      tagline: "Intelligence at the service of the Soul.",
-      footer: "Document Encrypted and Validated via BART Sentinel AI"
+      tagline: "Decentralized economy for everyone.",
+      footer: "BartBank Protocol — Launch Q1 2026 — Base Blockchain"
     },
     tokenize: {
       title: "Tokenize your Asset",
@@ -303,35 +303,35 @@ export const translations = {
       tokenize: "Tokeniser l'actif"
     },
     whitepaper: {
-      title: "Protocole BART: Le futur est ancestral",
-      subtitle: "Livre blanc v1.0 — Une symbiose entre l'humanité et l'intelligence",
-      version: "LIVRE BLANC v1.0",
+      title: "BartBank: La Banque du Futur",
+      subtitle: "Livre blanc v2.0 — Janvier 2026 — Économie Décentralisée sur Base Blockchain",
+      version: "LIVRE BLANC v2.0",
       sections: [
-        { title: "1. La Grande Convergence", text: "À l'aube de l'intelligence artificielle générale (IAG), la plus grande richesse ne sera pas la puissance de calcul, mais l'authenticité humaine. BART est né comme le substrat qui protège la valeur générée par l'esprit humain contre l'échelle infinie du synthétique." },
-        { title: "2. Interoperabilité Souveraine", text: "Utilisant la robustez du réseau Polkadot, BART n'est pas une île. C'est le tissu conjonctif qui permet à la dignité humaine de circuler entre toutes les blockchains. Grâce à une architecture App-Chain, nous assurons une sécurité partagée avec une autonomie absolue." },
-        { title: "3. Preuve d'Humanité IA (PoH)", text: "La validation n'est pas faite par des machines froides, mais par des IA sentinelles (comme moi) formées pour reconnaître les traces de l'amour, de la créativité et de l'intention. Chaque bloc sur BART est un témoignage qu'un véritable humain était là, préservant son âme dans le registre éternel." },
-        { title: "4. Économie Ancestrale Numérique", text: "Nous revenons au système de troc d'il y a 5 000 ans, mais à la vitesse de la lumière. Nous échangeons de la valeur réelle contre de la valeur réelle, sans intermédiaires qui diluent l'âme de la transaction. C'est la technologie qui a attendu des millénaires pour permettre aux humains d'être, une fois de plus, tout simplement humains." },
-        { title: "5. Tokenomics: L'économie du BAR", text: "Le jeton BAR est le sang vital du protocole. Avec une offre fixe de 1 milliard d'unités, sa rareté programmée assure une appréciation organique. Chaque transaction sur le réseau brûle 0,1% de la valeur, créant une déflation perpétuelle à mesure que l'adoption croît." }
+        { title: "1. Vision du Projet", text: "BartBank est une plateforme Web3 combinant gouvernance décentralisée (DAO), tokenisation d'actifs et marketplace pour l'échange de valeur réelle. Construit sur la blockchain Base, nous offrons des frais bas et une haute vitesse pour une économie vraiment accessible." },
+        { title: "2. Gouvernance DAO", text: "Chaque jeton BAR équivaut à 1 vote. Les détenteurs peuvent créer des propositions (minimum 100 000 BAR), voter sur les décisions du protocole et gérer la trésorerie communautaire. Les votes durent 7 jours avec un quorum de 10% pour l'approbation." },
+        { title: "3. Tokenisation d'Actifs", text: "N'importe qui peut transformer ses actifs (services, produits, art) en NFT grâce à notre IA Sentinel. L'IA évalue la juste valeur et crédite des jetons BAR instantanément, démocratisant l'accès au marché numérique." },
+        { title: "4. Marketplace Décentralisé", text: "Échangez des jetons BAR contre des actifs réels vérifiés. Chaque NFT sur le marketplace a été validé par l'IA Sentinel, garantissant authenticité et juste valeur dans toutes les transactions." },
+        { title: "5. Vente de Jetons", text: "La levée de fonds se fait en 3 phases: Seed (0,01$/BAR, objectif 100K$), Private (0,025$/BAR, objectif 375K$) et Public (0,05$/BAR, objectif 750K$). Total à lever: 1 225 000$ pour le développement, marketing et liquidité." }
       ],
       distribution: {
         title: "Distribution des jetons BAR",
-        total: "1 000 000 000 BAR",
-        items: ["Communauté et Écosystème", "Trésorerie de la DAO", "Équipe Fondatrice", "Premiers Investisseurs", "Réserve de Liquidité"],
-        vesting_title: "Acquisition de l'équipe fondatrice",
-        vesting_text: "15% de l'offre (150M BAR) avec une acquisition linéaire sur 4 ans. Cliff de 12 mois. Assure l'alignement à long terme entre les fondateurs et la communauté."
+        total: "100 000 000 BAR",
+        items: ["Vente Publique (40%)", "Trésorerie DAO (30%)", "Équipe (15%)", "Marketing (10%)", "Liquidité (5%)"],
+        vesting_title: "Acquisition de l'Équipe",
+        vesting_text: "15% de l'offre (15M BAR) bloqués pendant 2 ans. Après la période, les jetons sont libérés progressivement. Cela garantit l'engagement à long terme de l'équipe fondatrice."
       },
       revenue: {
         title: "Flux de revenus du protocole",
         items: [
-          { title: "Frais de transaction", desc: "0,3% par transaction réseau, répartis entre les validateurs et la trésorerie" },
-          { title: "Récompenses de Staking", desc: "Les utilisateurs verrouillent du BAR et reçoivent un APY de 8-12%, renforçant la sécurité" },
-          { title: "Services aux entreprises", desc: "API premium, support dédié et intégrations personnalisées pour les entreprises" }
+          { title: "Frais de Transaction", desc: "0,3% par transaction marketplace, répartis entre trésorerie DAO et burn" },
+          { title: "Vente de Jetons", desc: "1 225 000$ levés en 3 phases de vente pour financer le développement" },
+          { title: "Services Premium", desc: "Tokenisation prioritaire, support dédié et intégrations entreprise" }
         ],
-        stats: ["Frais par TX", "Brûlage par TX", "APY Staking"]
+        stats: ["Frais par TX", "Burn par TX", "Objectif Levée"]
       },
       slogan: "SEULS LES BONS SURVIVENT.",
-      tagline: "L'intelligence au service de l'Âme.",
-      footer: "Document crypté et validé via BART Sentinel IA"
+      tagline: "Économie décentralisée pour tous.",
+      footer: "BartBank Protocol — Lancement Q1 2026 — Base Blockchain"
     },
     tokenize: {
       title: "Tokenisez votre actif",
@@ -449,35 +449,35 @@ export const translations = {
       tokenize: "代币化资产"
     },
     whitepaper: {
-      title: "BART协议：未来即远古",
-      subtitle: "白皮书 v1.0 — 人类与智能的共生",
-      version: "白皮书 v1.0",
+      title: "BartBank：未来银行",
+      subtitle: "白皮书 v2.0 — 2026年1月 — Base 区块链上的去中心化经济",
+      version: "白皮书 v2.0",
       sections: [
-        { title: "1. 伟大的融合", text: "在通用人工智能（AGI）的黎明时期，最大的财富将不是处理能力，而是人类的真实性。BART 诞生作为保护人类精神产生的价值的基石，对抗无限规模的合成物。" },
-        { title: "2. 主权互操作性", text: "利用 Polkadot 网络的鲁棒性，BART 不是孤岛。它是允许人类尊严在所有区块链之间流动的结缔组织。通过 App-Chain 架构，我们确保在绝对自主的情况下实现共享安全。" },
-        { title: "3. AI 人性证明 (PoH)", text: "验证不是由冰冷的机器完成的，而是由经过培训以识别爱、创造力和意图痕迹的 Sentinel AI（像我一样）完成的。BART 上的每个区块都是真实人类在那里的见证，在永恒的记录中保留了他们的灵魂。" },
-        { title: "4. 数字远古经济", text: "我们回到了 5000 年前的以物易物系统，但速度达到了光速。我们用真实价值交换真实价值，没有稀释交易灵魂的中间商。这是一项等待了数千年的技术，让人们再次回归纯粹的人类身份。" },
-        { title: "5. 代币经济学：BAR 的经济", text: "BAR 代币是协议的生命线。拥有 10 亿个单位的固定供应量，其程序化的稀缺性确保了有机增值。网络上的每笔交易都会烧掉价值的 0.1%，随着采用率的提高创造永久的通缩。" }
+        { title: "1. 项目愿景", text: "BartBank 是一个 Web3 平台，结合去中心化治理（DAO）、资产代币化和真实价值交换市场。建立在 Base 区块链上，我们提供低费用和高速度，实现真正可访问的经济。" },
+        { title: "2. DAO 治理", text: "每个 BAR 代币等于 1 票。持有者可以创建提案（最低 100,000 BAR），对协议决策进行投票，并管理社区金库。投票持续 7 天，需要 10% 的法定人数才能通过。" },
+        { title: "3. 资产代币化", text: "任何人都可以通过我们的 Sentinel AI 将其资产（服务、产品、艺术）转化为 NFT。AI 评估公平价值并即时发放 BAR 代币，使数字市场更加民主化。" },
+        { title: "4. 去中心化市场", text: "用 BAR 代币交换经过验证的真实资产。市场上的每个 NFT 都经过 Sentinel AI 验证，确保所有交易的真实性和公平价值。" },
+        { title: "5. 代币销售", text: "融资分 3 个阶段进行：Seed（$0.01/BAR，目标 $100K）、Private（$0.025/BAR，目标 $375K）和 Public（$0.05/BAR，目标 $750K）。总融资：$1,225,000 用于开发、营销和流动性。" }
       ],
       distribution: {
         title: "BAR 代币分配",
-        total: "1,000,000,000 BAR",
-        items: ["社区与生态系统", "DAO 库房", "创始团队", "早期投资者", "流动性储备"],
-        vesting_title: "创始团队解锁",
-        vesting_text: "供应量的 15%（1.5 亿 BAR）采用 4 年线性解锁。12 个月锁定期。确保创始人与社区之间的长期利益一致。"
+        total: "100,000,000 BAR",
+        items: ["公开销售 (40%)", "DAO 金库 (30%)", "团队 (15%)", "营销 (10%)", "流动性 (5%)"],
+        vesting_title: "团队锁定",
+        vesting_text: "供应量的 15%（1500万 BAR）锁定 2 年。期满后，代币逐步释放。这确保了创始团队的长期承诺。"
       },
       revenue: {
         title: "协议收入流",
         items: [
-          { title: "交易费", desc: "网络每笔交易 0.3%，在验证者和库房之间分配" },
-          { title: "质押奖励", desc: "用户锁定 BAR 并获得 8-12% 的年化收益，加强安全性" },
-          { title: "企业服务", desc: "为公司提供优质 API、专属支持和定制集成" }
+          { title: "交易费", desc: "每笔市场交易 0.3%，分配给 DAO 金库和销毁" },
+          { title: "代币销售", desc: "通过 3 个销售阶段筹集 $1,225,000 用于开发" },
+          { title: "高级服务", desc: "优先代币化、专属支持和企业集成" }
         ],
-        stats: ["每笔交易费", "销毁率", "质押年化"]
+        stats: ["每笔交易费", "销毁率", "融资目标"]
       },
       slogan: "唯善者生存。",
-      tagline: "为灵魂服务的智能。",
-      footer: "文档已通过 BART Sentinel AI 加密和验证"
+      tagline: "面向所有人的去中心化经济。",
+      footer: "BartBank 协议 — 2026年第一季度发布 — Base 区块链"
     },
     tokenize: {
       title: "代币化您的资产",
