@@ -1,8 +1,8 @@
-# BART Protocol
+# BartBank Protocol
 
 ## Overview
 
-BART (BarT) is a blockchain-based alternative economy platform built as a Web3 protocol. The project presents itself as a decentralized economic primitive built on Substrate (Polkadot ecosystem), featuring wallet connectivity, 3D visualizations, and a premium editorial design aesthetic. The platform includes a landing page with network statistics, timeline visualization, and a whitepaper section explaining the protocol's vision.
+BartBank is a blockchain-based alternative economy platform built as a Web3 protocol. The project presents itself as a decentralized economic primitive built on Substrate (Polkadot ecosystem), featuring wallet connectivity, 3D visualizations, and a premium editorial design aesthetic. The platform includes a landing page with network statistics, timeline visualization, and a whitepaper section explaining the protocol's vision.
 
 ## User Preferences
 
