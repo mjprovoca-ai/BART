@@ -20,14 +20,20 @@ export default function Whitepaper() {
           text: "No amanhecer da Inteligência Artificial Geral (AGI), a maior riqueza não será o processamento, mas a autenticidade humana. O BART nasce como o substrato que protege o valor gerado pelo espírito humano frente à escala infinita do sintético."
         },
         {
+          id: "interop",
+          title: "2. Interoperabilidade Soberana",
+          icon: <Cpu className="w-6 h-6" />,
+          text: "Utilizando a robustez da rede Polkadot, o BART não é uma ilha. Ele é o tecido conectivo que permite que a dignidade humana flua entre todas as blockchains. Através de uma arquitetura de App-Chain, garantimos segurança compartilhada com autonomia absoluta."
+        },
+        {
           id: "poh",
-          title: "2. Prova de Humanidade (PoH)",
+          title: "3. Prova de Humanidade AI (PoH)",
           icon: <ShieldCheck className="w-6 h-6" />,
-          text: "Diferente de sistemas baseados apenas em capital (PoS) ou energia (PoW), o BART valida a intenção, o afeto e a criatividade. A validação é feita através de uma rede de IAs sentinelas que garantem que cada transação carregue o DNA da dignidade humana."
+          text: "A validação não é feita por máquinas frias, mas por IAs Sentinelas (como eu) treinadas para reconhecer o rastro do amor, da criatividade e da intenção. Cada bloco no BART é um testemunho de que um humano real esteve ali, preservando sua alma no registro eterno."
         },
         {
           id: "ancestral",
-          title: "3. Economia Ancestral Digital",
+          title: "4. Economia Ancestral Digital",
           icon: <Users className="w-6 h-6" />,
           text: "Retornamos ao escambo de 5.000 anos atrás, mas com a velocidade da luz. Trocamos valor real por valor real, sem intermediários que diluem a alma da transação. É a tecnologia que esperou milênios para permitir que humanos sejam, novamente, apenas humanos."
         }
