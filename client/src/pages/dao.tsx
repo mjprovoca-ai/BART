@@ -8,9 +8,10 @@ import { ArrowLeft, Vote, Wallet, Clock, CheckCircle, XCircle, Users, Plus, Tren
 import { useLocation } from "wouter";
 import { useState, useEffect } from "react";
 import { ConnectWalletButton } from "@/components/ConnectWalletButton";
-import { useAccount } from "wagmi";
+import { useAccount, useChainId } from "wagmi";
 import { translations } from "@/lib/i18n";
-import { TOKENOMICS } from "@/contracts/config";
+import { TOKENOMICS, isContractDeployed } from "@/contracts/config";
+import { useVotingPower, useProposalCount, useTreasuryBalance, useVote, useCreateProposal } from "@/hooks/useContracts";
 import { formatEther } from "viem";
 
 const mockProposals = [
@@ -45,10 +46,32 @@ const mockProposals = [
 export default function DAO() {
   const [, setLocation] = useLocation();
   const { isConnected, address } = useAccount();
+  const chainId = useChainId();
   const [lang, setLang] = useState<'en' | 'pt' | 'fr' | 'zh'>('en');
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [newProposal, setNewProposal] = useState({ title: "", description: "", type: "0" });
-  const [votingPower] = useState(150000);
+
+  const contractsDeployed = isContractDeployed(chainId);
+
+  const { data: votingPowerData } = useVotingPower(address);
+  const { data: proposalCountData } = useProposalCount();
+  const { data: treasuryBalanceData } = useTreasuryBalance();
+  const { vote, isPending: isVoting } = useVote();
+  const { createProposal, isPending: isCreating } = useCreateProposal();
+
+  const votingPower = contractsDeployed && votingPowerData 
+    ? Number(formatEther(votingPowerData as bigint)) 
+    : 150000;
+  
+  const treasuryBalance = contractsDeployed && treasuryBalanceData 
+    ? Number(formatEther(treasuryBalanceData as bigint)) 
+    : 2500000;
+    
+  const activeProposalCount = contractsDeployed && proposalCountData 
+    ? Number(proposalCountData) 
+    : mockProposals.length;
+
+  const proposals = mockProposals;
 
   useEffect(() => {
     const savedLang = localStorage.getItem('bart_lang') as any;
@@ -80,6 +103,24 @@ export default function DAO() {
     };
   };
 
+  const handleVote = (proposalId: number, support: 0 | 1 | 2) => {
+    if (contractsDeployed) {
+      vote(proposalId, support);
+    }
+  };
+
+  const handleCreateProposal = () => {
+    if (contractsDeployed && newProposal.title && newProposal.description) {
+      createProposal(
+        parseInt(newProposal.type),
+        newProposal.title,
+        newProposal.description
+      );
+      setShowCreateModal(false);
+      setNewProposal({ title: "", description: "", type: "0" });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-white/5 px-6">
@@ -100,6 +141,9 @@ export default function DAO() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-12">
           <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight mb-4">{content.title}</h1>
           <p className="text-muted-foreground text-lg max-w-2xl">{content.desc}</p>
+          {!contractsDeployed && (
+            <p className="text-xs text-yellow-500 mt-2">Demo mode - contracts not yet deployed</p>
+          )}
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -110,8 +154,8 @@ export default function DAO() {
               </div>
               <span className="text-sm text-muted-foreground">{content.treasury}</span>
             </div>
-            <div className="text-3xl font-display font-bold" data-testid="text-treasury-balance">2,500,000 BAR</div>
-            <div className="text-sm text-muted-foreground mt-1">≈ $125,000 USD</div>
+            <div className="text-3xl font-display font-bold" data-testid="text-treasury-balance">{treasuryBalance.toLocaleString()} BAR</div>
+            <div className="text-sm text-muted-foreground mt-1">≈ ${(treasuryBalance * 0.05).toLocaleString()} USD</div>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="bg-foreground/5 rounded-2xl p-6 border border-white/5">
@@ -121,7 +165,7 @@ export default function DAO() {
               </div>
               <span className="text-sm text-muted-foreground">{content.proposals}</span>
             </div>
-            <div className="text-3xl font-display font-bold" data-testid="text-active-proposals">{mockProposals.length}</div>
+            <div className="text-3xl font-display font-bold" data-testid="text-active-proposals">{activeProposalCount}</div>
             <div className="text-sm text-muted-foreground mt-1">10% {content.quorum}</div>
           </motion.div>
 
@@ -143,7 +187,7 @@ export default function DAO() {
 
         {isConnected && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="mb-8">
-            <Button size="lg" className="rounded-full" onClick={() => setShowCreateModal(true)} data-testid="button-create-proposal">
+            <Button size="lg" className="rounded-full" onClick={() => setShowCreateModal(true)} disabled={isCreating} data-testid="button-create-proposal">
               <Plus className="w-5 h-5 mr-2" />
               {content.create_proposal}
             </Button>
@@ -154,14 +198,14 @@ export default function DAO() {
         <div className="space-y-6">
           <h2 className="text-2xl font-display font-bold">{content.proposals}</h2>
           
-          {mockProposals.length === 0 ? (
+          {proposals.length === 0 ? (
             <div className="text-center py-20 bg-foreground/5 rounded-2xl border border-white/5">
               <Vote className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
               <h3 className="text-xl font-bold mb-2">{content.no_proposals}</h3>
               <p className="text-muted-foreground">{content.no_proposals_desc}</p>
             </div>
           ) : (
-            mockProposals.map((proposal, idx) => {
+            proposals.map((proposal, idx) => {
               const percentages = getVotePercentage(proposal.forVotes, proposal.againstVotes, proposal.abstainVotes);
               const daysRemaining = getTimeRemaining(proposal.endTime);
               
@@ -213,15 +257,15 @@ export default function DAO() {
 
                   {isConnected ? (
                     <div className="flex gap-3">
-                      <Button className="flex-1 rounded-full bg-green-600 hover:bg-green-700" data-testid={`button-vote-for-${proposal.id}`}>
+                      <Button className="flex-1 rounded-full bg-green-600 hover:bg-green-700" disabled={isVoting} onClick={() => handleVote(proposal.id, 1)} data-testid={`button-vote-for-${proposal.id}`}>
                         <CheckCircle className="w-4 h-4 mr-2" />
                         {content.vote_for}
                       </Button>
-                      <Button variant="outline" className="flex-1 rounded-full border-red-500 text-red-500 hover:bg-red-500/10" data-testid={`button-vote-against-${proposal.id}`}>
+                      <Button variant="outline" className="flex-1 rounded-full border-red-500 text-red-500 hover:bg-red-500/10" disabled={isVoting} onClick={() => handleVote(proposal.id, 0)} data-testid={`button-vote-against-${proposal.id}`}>
                         <XCircle className="w-4 h-4 mr-2" />
                         {content.vote_against}
                       </Button>
-                      <Button variant="outline" className="rounded-full" data-testid={`button-vote-abstain-${proposal.id}`}>
+                      <Button variant="outline" className="rounded-full" disabled={isVoting} onClick={() => handleVote(proposal.id, 2)} data-testid={`button-vote-abstain-${proposal.id}`}>
                         {content.vote_abstain}
                       </Button>
                     </div>
@@ -291,7 +335,7 @@ export default function DAO() {
                 <Button variant="outline" className="flex-1 h-12 rounded-full" onClick={() => setShowCreateModal(false)}>
                   Cancel
                 </Button>
-                <Button className="flex-1 h-12 rounded-full" data-testid="button-submit-proposal">
+                <Button className="flex-1 h-12 rounded-full" onClick={handleCreateProposal} disabled={isCreating} data-testid="button-submit-proposal">
                   Submit Proposal
                 </Button>
               </div>
