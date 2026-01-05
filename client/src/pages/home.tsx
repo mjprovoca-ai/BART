@@ -8,10 +8,15 @@ import { useState } from "react";
 import { useLocation } from "wouter";
 
 export default function Home() {
-  const [lang, setLang] = useState<'pt' | 'en'>('pt');
+  const [lang, setLang] = useState<'en' | 'pt' | 'fr' | 'zh'>('en');
   const [, setLocation] = useLocation();
 
-  const toggleLang = () => setLang(l => l === 'pt' ? 'en' : 'pt');
+  const languages: Array<'en' | 'pt' | 'fr' | 'zh'> = ['en', 'pt', 'fr', 'zh'];
+  const toggleLang = () => {
+    const currentIdx = languages.indexOf(lang);
+    const nextIdx = (currentIdx + 1) % languages.length;
+    setLang(languages[nextIdx]);
+  };
 
   const t = {
     pt: {
@@ -133,6 +138,128 @@ export default function Home() {
           { title: "Developers", links: ["Documentation", "GitHub", "SDKs", "Audits"] },
           { title: "Ecosystem", links: ["Wallets", "Explorers", "DApps", "Community"] },
           { title: "Legal", links: ["Privacy", "Terms", "Licenses", "Contact"] }
+        ]
+      }
+    },
+    fr: {
+      nav: {
+        manifesto: "Manifeste",
+        technology: "Technologie",
+        timeline: "Chronologie",
+        marketplace: "Marché",
+        profile: "Profil",
+        connect: "Connecter Portefeuille"
+      },
+      hero: {
+        badge: "Protocole Web3 Foundation",
+        title1: "DÉCENTRALISEZ",
+        title2: "TOUT",
+        desc: "Une nouvelle primitive économique pour l'ère numérique. Construit sur Substrate, conçu pour les humains, sécurisé par les mathématiques.",
+        cta_primary: "Tokeniser un Actif",
+        cta_secondary: "Lire le Whitepaper"
+      },
+      stats: {
+        network_status: "État du Réseau",
+        uptime_score: "Score de Disponibilité",
+        active_nodes: "Nœuds Actifs",
+        block_height: "Hauteur du Bloc",
+        transactions: "Total des Transactions",
+        avg_fee: "Frais Moyen"
+      },
+      timeline: {
+        title1: "Le Futur est",
+        title2: "Ancestral.",
+        subtitle: "",
+        events: [
+          { year: "4000 av. J.-C.", title: "Troc", desc: "Économie basée sur l'échange direct. Le sucre, le sel et le bétail étaient la monnaie." },
+          { year: "1000 av. J.-C.", title: "Pierres Précieuses", desc: "L'émergence de la valeur intrinsèque. Les métaux et pierres rares dictent le commerce." },
+          { year: "XXe Siècle", title: "Monnaie Fiduciaire", desc: "Dollar, Euro. Valeur basée sur la confiance de l'État." },
+          { year: "2020", title: "Ère Instantanée", desc: "Paiements instantanés et numérisation totale. Le temps devient la ressource la plus rare." },
+          { year: "Aujourd'hui", title: "La Grande Oisiveté", desc: "Des milliards en vols, hôtels et infrastructures inutilisés. Gaspillage systémique." },
+          { year: "Futur", title: "Protocole BART", desc: "Le futur est ancestral." }
+        ],
+        final_reveal: ""
+      },
+      solution: {
+        title1: "La",
+        title2: "Solution.",
+        p1: "Nous avons réinventé la façon dont la valeur circule. Sans intermédiaires, sans friction, juste un consensus mathématique pur. Le protocole BART utilise un mécanisme unique de Preuve d'Humanité.",
+        p2: "En combinant les interactions utilisateur avec une validation IA avancée, nous créons un substrat sécurisé et évolutif pour la prochaine génération d'applications décentralisées.",
+        feature1_title: "Ultra Rapide",
+        feature1_desc: "Finalité en moins d'une seconde pour les apps temps réel.",
+        feature2_title: "Sécurisé par Défaut",
+        feature2_desc: "Vérification formelle au niveau du protocole."
+      },
+      footer: {
+        tagline: "L'avenir de l'économie décentralisée. Construit pour le long terme.",
+        rights: "© 2024 Fondation BART. Tous droits réservés.",
+        status: "État du Système: Opérationnel",
+        cols: [
+          { title: "Protocole", links: ["Gouvernance", "Tokenomics", "Staking", "Bridge"] },
+          { title: "Développeurs", links: ["Documentation", "GitHub", "SDKs", "Audits"] },
+          { title: "Écosystème", links: ["Portefeuilles", "Explorateurs", "DApps", "Communauté"] },
+          { title: "Légal", links: ["Confidentialité", "Conditions", "Licences", "Contact"] }
+        ]
+      }
+    },
+    zh: {
+      nav: {
+        manifesto: "宣言",
+        technology: "技术",
+        timeline: "时间线",
+        marketplace: "市场",
+        profile: "个人资料",
+        connect: "连接钱包"
+      },
+      hero: {
+        badge: "Web3基金会协议",
+        title1: "去中心化",
+        title2: "一切",
+        desc: "数字时代的全新经济原语。基于Substrate构建，为人类设计，由数学保护。",
+        cta_primary: "代币化资产",
+        cta_secondary: "阅读白皮书"
+      },
+      stats: {
+        network_status: "网络状态",
+        uptime_score: "正常运行评分",
+        active_nodes: "活跃节点",
+        block_height: "区块高度",
+        transactions: "总交易量",
+        avg_fee: "平均费用"
+      },
+      timeline: {
+        title1: "未来是",
+        title2: "古老的。",
+        subtitle: "",
+        events: [
+          { year: "公元前4000年", title: "以物易物", desc: "基于直接交换的经济。糖、盐和牲畜就是货币。" },
+          { year: "公元前1000年", title: "宝石", desc: "内在价值的兴起。稀有金属和宝石主导贸易。" },
+          { year: "20世纪", title: "法定货币", desc: "美元、欧元、人民币。价值基于国家信任。" },
+          { year: "2020年", title: "即时时代", desc: "即时支付和完全数字化。时间成为最稀缺的资源。" },
+          { year: "今天", title: "大闲置", desc: "数十亿的航班、酒店和基础设施闲置。系统性浪费。" },
+          { year: "未来", title: "BART协议", desc: "未来是古老的。" }
+        ],
+        final_reveal: ""
+      },
+      solution: {
+        title1: "解决",
+        title2: "方案。",
+        p1: "我们重新构想了价值的流动方式。没有中间商，没有摩擦，只有纯粹的数学共识。BART协议采用独特的人性证明机制。",
+        p2: "通过将用户交互与先进的AI验证相结合，我们为下一代去中心化应用创建了安全、可扩展的基础。",
+        feature1_title: "极速",
+        feature1_desc: "亚秒级确定性，适用于实时应用。",
+        feature2_title: "默认安全",
+        feature2_desc: "协议级形式化验证。"
+      },
+      footer: {
+        tagline: "去中心化经济的未来。为长远而建。",
+        rights: "© 2024 BART基金会。保留所有权利。",
+        status: "系统状态：运行中",
+        cols: [
+          { title: "协议", links: ["治理", "代币经济", "质押", "跨链桥"] },
+          { title: "开发者", links: ["文档", "GitHub", "SDK", "审计"] },
+          { title: "生态系统", links: ["钱包", "浏览器", "DApps", "社区"] },
+          { title: "法律", links: ["隐私", "条款", "许可", "联系"] }
         ]
       }
     }
