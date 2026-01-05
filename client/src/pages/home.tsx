@@ -308,15 +308,15 @@ export default function Home() {
         <div className="container px-6 mx-auto">
           <div className="max-w-3xl mb-24">
             <p className="text-xl text-muted-foreground leading-relaxed mb-4">
-              Uma jornada da troca direta à descentralização absoluta.
+              {content.timeline.subtitle}
             </p>
           </div>
 
           <div className="relative">
             {/* Vertical Line */}
-            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2 hidden md:block" />
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2" />
             
-            <div className="space-y-24">
+            <div className="space-y-16 md:space-y-24">
               {timelineData.map((item, i) => (
                 <motion.div
                   key={item.year}
@@ -324,19 +324,19 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, delay: i * 0.1 }}
-                  className={`relative flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-0`}
+                  className={`relative flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-start md:items-center gap-8 md:gap-0 pl-12 md:pl-0`}
                 >
                   {/* Content */}
-                  <div className={`w-full md:w-1/2 ${i % 2 === 0 ? 'md:pr-24 md:text-right' : 'md:pl-24 md:text-left'}`}>
+                  <div className={`w-full md:w-1/2 ${i % 2 === 0 ? 'md:pr-24 md:text-right' : 'md:pl-24 md:text-left'} text-left`}>
                     <span className="text-xs font-mono text-muted-foreground uppercase tracking-widest block mb-2">{item.year}</span>
-                    <h3 className="text-3xl font-display font-bold mb-4">{item.title}</h3>
-                    <p className="text-muted-foreground max-w-sm ml-auto mr-auto md:ml-0 md:mr-0 inline-block">
+                    <h3 className="text-2xl md:text-3xl font-display font-bold mb-4">{item.title}</h3>
+                    <p className="text-muted-foreground max-w-sm mr-auto md:ml-auto md:mr-0 inline-block text-sm md:text-base">
                       {item.description}
                     </p>
                   </div>
 
                   {/* Icon Node */}
-                  <div className="absolute left-0 md:left-1/2 w-12 h-12 bg-background border-2 border-foreground rounded-full flex items-center justify-center -translate-x-1/2 z-10 hidden md:flex">
+                  <div className="absolute left-4 md:left-1/2 w-10 h-10 md:w-12 md:h-12 bg-background border-2 border-foreground rounded-full flex items-center justify-center -translate-x-1/2 z-10">
                     {item.icon}
                   </div>
 
