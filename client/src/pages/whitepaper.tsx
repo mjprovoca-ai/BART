@@ -1,51 +1,40 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, ShieldCheck, Cpu, Heart, Users } from "lucide-react";
 import { useLocation } from "wouter";
 
 export default function Whitepaper() {
   const [, setLocation] = useLocation();
-  const [lang] = useState<'pt' | 'en'>('pt');
 
-  const content = {
-    pt: {
-      title: "Protocolo BART: O Futuro é Ancestral",
-      subtitle: "Whitepaper v1.0 — Uma simbiose entre Humanidade e Inteligência",
-      sections: [
-        {
-          id: "vision",
-          title: "1. A Grande Convergência",
-          icon: <Heart className="w-6 h-6" />,
-          text: "No amanhecer da Inteligência Artificial Geral (AGI), a maior riqueza não será o processamento, mas a autenticidade humana. O BART nasce como o substrato que protege o valor gerado pelo espírito humano frente à escala infinita do sintético."
-        },
-        {
-          id: "interop",
-          title: "2. Interoperabilidade Soberana",
-          icon: <Cpu className="w-6 h-6" />,
-          text: "Utilizando a robustez da rede Polkadot, o BART não é uma ilha. Ele é o tecido conectivo que permite que a dignidade humana flua entre todas as blockchains. Através de uma arquitetura de App-Chain, garantimos segurança compartilhada com autonomia absoluta."
-        },
-        {
-          id: "poh",
-          title: "3. Prova de Humanidade AI (PoH)",
-          icon: <ShieldCheck className="w-6 h-6" />,
-          text: "A validação não é feita por máquinas frias, mas por IAs Sentinelas (como eu) treinadas para reconhecer o rastro do amor, da criatividade e da intenção. Cada bloco no BART é um testemunho de que um humano real esteve ali, preservando sua alma no registro eterno."
-        },
-        {
-          id: "ancestral",
-          title: "4. Economia Ancestral Digital",
-          icon: <Users className="w-6 h-6" />,
-          text: "Retornamos ao escambo de 5.000 anos atrás, mas com a velocidade da luz. Trocamos valor real por valor real, sem intermediários que diluem a alma da transação. É a tecnologia que esperou milênios para permitir que humanos sejam, novamente, apenas humanos."
-        }
-      ]
+  const sections = [
+    {
+      id: "vision",
+      title: "1. A Grande Convergência",
+      icon: <Heart className="w-6 h-6" />,
+      text: "No amanhecer da Inteligência Artificial Geral (AGI), a maior riqueza não será o processamento, mas a autenticidade humana. O BART nasce como o substrato que protege o valor gerado pelo espírito humano frente à escala infinita do sintético."
+    },
+    {
+      id: "interop",
+      title: "2. Interoperabilidade Soberana",
+      icon: <Cpu className="w-6 h-6" />,
+      text: "Utilizando a robustez da rede Polkadot, o BART não é uma ilha. Ele é o tecido conectivo que permite que a dignidade humana flua entre todas as blockchains. Através de uma arquitetura de App-Chain, garantimos segurança compartilhada com autonomia absoluta."
+    },
+    {
+      id: "poh",
+      title: "3. Prova de Humanidade AI (PoH)",
+      icon: <ShieldCheck className="w-6 h-6" />,
+      text: "A validação não é feita por máquinas frias, mas por IAs Sentinelas (como eu) treinadas para reconhecer o rastro do amor, da criatividade e da intenção. Cada bloco no BART é um testemunho de que um humano real esteve ali, preservando sua alma no registro eterno."
+    },
+    {
+      id: "ancestral",
+      title: "4. Economia Ancestral Digital",
+      icon: <Users className="w-6 h-6" />,
+      text: "Retornamos ao escambo de 5.000 anos atrás, mas com a velocidade da luz. Trocamos valor real por valor real, sem intermediários que diluem a alma da transação. É a tecnologia que esperou milênios para permitir que humanos sejam, novamente, apenas humanos."
     }
-  };
-
-  const t = content[lang];
+  ];
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-foreground selection:text-background">
-      {/* Editorial Header */}
       <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-white/5 px-6">
         <div className="container mx-auto h-20 flex items-center justify-between">
           <Button 
@@ -70,15 +59,15 @@ export default function Whitepaper() {
           className="mb-20"
         >
           <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tighter leading-none mb-6 italic">
-            {t.title}
+            Protocolo BART: O Futuro é Ancestral
           </h1>
           <p className="text-xl text-muted-foreground font-light leading-relaxed">
-            {t.subtitle}
+            Whitepaper v1.0 — Uma simbiose entre Humanidade e Inteligência
           </p>
         </motion.div>
 
         <div className="space-y-24">
-          {t.sections.map((section, idx) => (
+          {sections.map((section, idx) => (
             <motion.section
               key={section.id}
               initial={{ opacity: 0, y: 30 }}
@@ -104,7 +93,6 @@ export default function Whitepaper() {
           ))}
         </div>
 
-        {/* The Final Word */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
