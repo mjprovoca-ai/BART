@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 
 /**
  * @title BARToken
- * @dev BankBart Protocol Token - ERC20 token with governance capabilities
+ * @dev BartBank Protocol Token - ERC20 token with governance capabilities
  * Total Supply: 100,000,000 BAR
  * 
  * Distribution:
@@ -44,7 +44,7 @@ contract BARToken is ERC20, ERC20Burnable, Ownable, ERC20Permit {
         address _teamWallet,
         address _marketingWallet,
         address _liquidityWallet
-    ) ERC20("BankBart Token", "BAR") Ownable(msg.sender) ERC20Permit("BankBart Token") {
+    ) ERC20("BartBank Token", "BAR") Ownable(msg.sender) ERC20Permit("BartBank Token") {
         require(_teamWallet != address(0), "Invalid team wallet");
         require(_marketingWallet != address(0), "Invalid marketing wallet");
         require(_liquidityWallet != address(0), "Invalid liquidity wallet");
