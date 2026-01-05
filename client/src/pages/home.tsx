@@ -1,10 +1,55 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
 import BartFormation from "@/components/BartFormation";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown, Hexagon, Layers, Shield, Zap } from "lucide-react";
+import { ArrowRight, ChevronDown, Zap, Shield, History, Cpu, Globe, Infinity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
+  const timeline = [
+    {
+      year: "4000 a.C.",
+      title: "Escambo",
+      description: "A economia baseada na troca direta. O açúcar, o sal e o gado eram a moeda.",
+      icon: <History className="w-6 h-6" />,
+      color: "border-muted"
+    },
+    {
+      year: "1000 a.C.",
+      title: "Pedras Preciosas",
+      description: "O surgimento de valores intrínsecos. Metais e pedras raras ditam o comércio.",
+      icon: <Globe className="w-6 h-6" />,
+      color: "border-muted"
+    },
+    {
+      year: "Séc. XX",
+      title: "Moeda Fiduciária",
+      description: "Cruzeiro, Real, Dólar. O valor baseado na confiança do Estado.",
+      icon: <History className="w-6 h-6" />,
+      color: "border-muted"
+    },
+    {
+      year: "2020",
+      title: "Era Instantânea",
+      description: "PIX e a digitalização total do fluxo. O tempo se torna o recurso mais escasso.",
+      icon: <Zap className="w-6 h-6" />,
+      color: "border-muted"
+    },
+    {
+      year: "Hoje",
+      title: "A Grande Ociosidade",
+      description: "Bilhões em passagens aéreas, hotéis e infraestrutura parados. Desperdício sistêmico.",
+      icon: <Cpu className="w-6 h-6" />,
+      color: "border-foreground"
+    },
+    {
+      year: "Futuro",
+      title: "BART Protocol",
+      description: "Tecnologia que esperou 5000 anos. O futuro é ancestral.",
+      icon: <Infinity className="w-6 h-6" />,
+      color: "border-foreground shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
       {/* Navigation */}
@@ -19,8 +64,8 @@ export default function Home() {
           
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
             <a href="#manifesto" className="hover:text-foreground transition-colors">Manifesto</a>
+            <a href="#timeline" className="hover:text-foreground transition-colors">Timeline</a>
             <a href="#solution" className="hover:text-foreground transition-colors">Technology</a>
-            <a href="#profile" className="hover:text-foreground transition-colors">Profile</a>
           </div>
 
           <div className="flex items-center gap-4">
@@ -73,7 +118,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats / Editorial Profile Section */}
+      {/* Stats Section */}
       <section id="profile" className="py-32 border-t border-border">
         <div className="container px-6 mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-end">
@@ -120,7 +165,68 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Solution - Cinematic Moment */}
+      {/* Timeline Section - Ancestral Future */}
+      <section id="timeline" className="py-32 relative">
+        <div className="container px-6 mx-auto">
+          <div className="max-w-3xl mb-24">
+            <h2 className="text-5xl md:text-7xl font-display font-bold tracking-tight mb-8">
+              O Futuro é <br/>Ancestral.
+            </h2>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              A tecnologia que você esperou 5.000 anos para vivenciar. Uma jornada da troca direta à descentralização absoluta.
+            </p>
+          </div>
+
+          <div className="relative">
+            {/* Vertical Line */}
+            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2 hidden md:block" />
+            
+            <div className="space-y-24">
+              {timeline.map((item, i) => (
+                <motion.div
+                  key={item.year}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: i * 0.1 }}
+                  className={`relative flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-0`}
+                >
+                  {/* Content */}
+                  <div className={`w-full md:w-1/2 ${i % 2 === 0 ? 'md:pr-24 md:text-right' : 'md:pl-24 md:text-left'}`}>
+                    <span className="text-xs font-mono text-muted-foreground uppercase tracking-widest block mb-2">{item.year}</span>
+                    <h3 className="text-3xl font-display font-bold mb-4">{item.title}</h3>
+                    <p className="text-muted-foreground max-w-sm ml-auto mr-auto md:ml-0 md:mr-0 inline-block">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  {/* Icon Node */}
+                  <div className="absolute left-0 md:left-1/2 w-12 h-12 bg-background border-2 border-foreground rounded-full flex items-center justify-center -translate-x-1/2 z-10 hidden md:flex">
+                    {item.icon}
+                  </div>
+
+                  {/* Spacer for the other side */}
+                  <div className="hidden md:block w-1/2" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-center mt-32"
+          >
+            <div className="inline-block p-1 bg-gradient-to-r from-border via-foreground to-border rounded-full">
+              <div className="px-8 py-4 bg-background rounded-full">
+                <span className="text-xl font-display font-bold italic tracking-wider">A tecnologia que esperou 5.000 anos.</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* The Solution Section */}
       <section id="solution" className="py-32 bg-secondary/30 relative overflow-hidden">
         <div className="container px-6 mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -131,7 +237,6 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="order-2 lg:order-1"
             >
-              {/* THIS IS THE PARTICLE EFFECT COMPONENT */}
               <BartFormation />
             </motion.div>
             
