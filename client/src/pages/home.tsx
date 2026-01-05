@@ -1,4 +1,5 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ConnectWalletButton } from "@/components/ConnectWalletButton";
 import BartFormation from "@/components/BartFormation";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Zap, Shield, History, Cpu, Globe, Infinity, Languages } from "lucide-react";
@@ -210,9 +211,9 @@ export default function Home() {
               <span className="font-bold text-xs">{lang.toUpperCase()}</span>
             </Button>
             <ThemeToggle />
-            <Button variant="default" className="hidden md:flex rounded-full px-6">
-              {content.nav.connect}
-            </Button>
+            <div className="hidden md:block">
+              <ConnectWalletButton label={content.nav.connect} />
+            </div>
           </div>
         </div>
       </nav>
