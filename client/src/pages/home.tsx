@@ -4,9 +4,11 @@ import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Zap, Shield, History, Cpu, Globe, Infinity, Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useLocation } from "wouter";
 
 export default function Home() {
   const [lang, setLang] = useState<'pt' | 'en'>('pt');
+  const [, setLocation] = useLocation();
 
   const toggleLang = () => setLang(l => l === 'pt' ? 'en' : 'pt');
 
@@ -244,7 +246,12 @@ export default function Home() {
                 {content.hero.cta_primary}
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button variant="outline" size="lg" className="h-14 px-8 rounded-full text-lg w-full md:w-auto">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="h-14 px-8 rounded-full text-lg w-full md:w-auto"
+                onClick={() => setLocation("/whitepaper")}
+              >
                 {content.hero.cta_secondary}
               </Button>
             </div>
