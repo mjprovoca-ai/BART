@@ -321,11 +321,6 @@ export default function Home() {
       {/* Timeline Section - Ancestral Future */}
       <section id="timeline" className="py-32 relative">
         <div className="container px-6 mx-auto">
-          <div className="max-w-3xl mb-24">
-            <p className="text-xl text-muted-foreground leading-relaxed mb-4">
-              {content.timeline.subtitle}
-            </p>
-          </div>
 
           <div className="relative">
             {/* Vertical Line */}
@@ -362,26 +357,13 @@ export default function Home() {
             </div>
           </div>
           
-          {/* PRE-REVEAL: "A tecnologia que esperou 5000 anos" */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="text-center mt-32 mb-16"
-          >
-            <p className="text-xl md:text-2xl text-muted-foreground italic tracking-wide">
-              {content.timeline.final_reveal}
-            </p>
-          </motion.div>
-
           {/* THE REVEAL: BART 3D */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 50 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            className="w-full max-w-4xl mx-auto shadow-2xl rounded-xl overflow-hidden border border-white/10"
+            className="w-full max-w-4xl mx-auto shadow-2xl rounded-xl overflow-hidden border border-white/10 mt-24"
           >
             <BartFormation />
           </motion.div>
