@@ -347,29 +347,46 @@ export default function Home() {
             </div>
           </div>
           
+          {/* PRE-REVEAL: "A tecnologia que esperou 5000 anos" */}
           <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-center mt-32"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="text-center mt-32 mb-16"
           >
-            {/* THE REVEAL - MOVED HERE */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 50 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              className="w-full max-w-4xl mx-auto shadow-2xl rounded-xl overflow-hidden border border-white/10 mb-12"
-            >
-              <BartFormation />
-            </motion.div>
+            <p className="text-xl md:text-2xl text-muted-foreground italic tracking-wide">
+              {content.timeline.final_reveal}
+            </p>
+          </motion.div>
 
-            <div className="inline-block p-1 bg-gradient-to-r from-border via-foreground to-border rounded-full">
-              <div className="px-8 py-4 bg-background rounded-full text-center">
-                <span className="block text-xl font-display font-bold italic tracking-wider mb-2">{content.timeline.title1} {content.timeline.title2}</span>
-                <span className="text-sm text-muted-foreground tracking-widest uppercase">{content.timeline.final_reveal}</span>
-              </div>
-            </div>
+          {/* THE REVEAL: BART 3D */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 50 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="w-full max-w-4xl mx-auto shadow-2xl rounded-xl overflow-hidden border border-white/10"
+          >
+            <BartFormation />
+          </motion.div>
 
+          {/* POST-REVEAL: O FUTURO É ANCESTRAL - EPIC */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="text-center mt-20"
+          >
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-display font-black tracking-tighter leading-none">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-foreground via-foreground to-muted-foreground/50">
+                {content.timeline.title1}
+              </span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-foreground via-foreground to-muted-foreground/50">
+                {content.timeline.title2}
+              </span>
+            </h2>
           </motion.div>
         </div>
       </section>

@@ -1,37 +1,37 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { type NetworkStats, type InsertNetworkStats } from "@shared/schema";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getLatestNetworkStats(): Promise<NetworkStats>;
+  updateNetworkStats(stats: InsertNetworkStats): Promise<NetworkStats>;
 }
 
 export class MemStorage implements IStorage {
-  private users: Map<string, User>;
+  private stats: NetworkStats;
 
   constructor() {
-    this.users = new Map();
+    // Initialize with default stats
+    this.stats = {
+      id: 1,
+      uptimePercentage: 98,
+      activeNodes: 1240,
+      blockHeight: 8992102,
+      totalTransactions: "45.2M+",
+      averageFee: "< 0.001 BAR",
+      updatedAt: new Date(),
+    };
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async getLatestNetworkStats(): Promise<NetworkStats> {
+    return this.stats;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async updateNetworkStats(insertStats: InsertNetworkStats): Promise<NetworkStats> {
+    this.stats = {
+      ...this.stats,
+      ...insertStats,
+      updatedAt: new Date(),
+    };
+    return this.stats;
   }
 }
 

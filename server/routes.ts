@@ -6,11 +6,21 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  // put application routes here
-  // prefix all routes with /api
+  
+  // GET /api/stats - Get current network statistics
+  app.get("/api/stats", async (_req, res) => {
+    try {
+      const stats = await storage.getLatestNetworkStats();
+      res.json(stats);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch network stats" });
+    }
+  });
 
-  // use storage to perform CRUD operations on the storage interface
-  // e.g. storage.insertUser(user) or storage.getUserByUsername(username)
+  // Health check endpoint
+  app.get("/api/health", (_req, res) => {
+    res.json({ status: "operational", timestamp: new Date().toISOString() });
+  });
 
   return httpServer;
 }
