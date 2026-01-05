@@ -19,6 +19,7 @@ export default function Home() {
         manifesto: "Manifesto",
         technology: "Tecnologia",
         timeline: "Linha do Tempo",
+        marketplace: "Marketplace",
         profile: "Perfil",
         connect: "Conectar Carteira"
       },
@@ -79,6 +80,7 @@ export default function Home() {
         manifesto: "Manifesto",
         technology: "Technology",
         timeline: "Timeline",
+        marketplace: "Marketplace",
         profile: "Profile",
         connect: "Connect Wallet"
       },
@@ -198,7 +200,8 @@ export default function Home() {
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
             <a href="#manifesto" className="hover:text-foreground transition-colors">{content.nav.manifesto}</a>
             <a href="#timeline" className="hover:text-foreground transition-colors">{content.nav.timeline}</a>
-            <a href="#solution" className="hover:text-foreground transition-colors">{content.nav.technology}</a>
+            <button onClick={() => setLocation("/marketplace")} className="hover:text-foreground transition-colors">{content.nav.marketplace}</button>
+            <button onClick={() => setLocation("/profile")} className="hover:text-foreground transition-colors">{content.nav.profile}</button>
           </div>
 
           <div className="flex items-center gap-2 md:gap-4">

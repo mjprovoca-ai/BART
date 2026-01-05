@@ -355,7 +355,7 @@ export default function Tokenize() {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", delay: 0.2 }}
-                  className="w-24 h-24 mx-auto mb-8 rounded-full bg-green-500 text-white flex items-center justify-center"
+                  className="w-24 h-24 mx-auto mb-8 rounded-full bg-foreground text-background flex items-center justify-center"
                 >
                   <CheckCircle className="w-12 h-12" />
                 </motion.div>
