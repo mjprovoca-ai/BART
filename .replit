@@ -41,3 +41,8 @@ waitForPort = 5000
 
 [agent]
 mockupState = "FULLSTACK"
+
+[userenv]
+
+[userenv.shared]
+VITE_WALLETCONNECT_PROJECT_ID = "968d4557-c931-46ee-bbb7-d5a36147bafa"
