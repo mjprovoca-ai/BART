@@ -1,7 +1,7 @@
 import { WagmiProvider } from 'wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
-import { config } from '@/lib/wagmi';
+import { config, hasValidProjectId } from '@/lib/wagmi';
 import '@rainbow-me/rainbowkit/styles.css';
 
 const queryClient = new QueryClient({
@@ -14,6 +14,16 @@ const queryClient = new QueryClient({
 });
 
 export function Web3Provider({ children }: { children: React.ReactNode }) {
+  if (!hasValidProjectId) {
+    return (
+      <WagmiProvider config={config}>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      </WagmiProvider>
+    );
+  }
+
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
