@@ -18,12 +18,12 @@ export default function Whitepaper() {
   const navContent = translations[lang].nav;
 
   const sections = [
-    { id: "vision", title: content.sections[0].title, icon: <Heart className="w-6 h-6" />, text: content.sections[0].text },
-    { id: "interop", title: content.sections[1].title, icon: <Cpu className="w-6 h-6" />, text: content.sections[1].text },
-    { id: "poh", title: content.sections[2].title, icon: <ShieldCheck className="w-6 h-6" />, text: content.sections[2].text },
-    { id: "ancestral", title: content.sections[3].title, icon: <Users className="w-6 h-6" />, text: content.sections[3].text },
-    { id: "tokenomics", title: content.sections[4].title, icon: <Coins className="w-6 h-6" />, text: content.sections[4].text }
-  ];
+    { id: "vision", title: content.sections[0]?.title, icon: <Heart className="w-6 h-6" />, text: content.sections[0]?.text },
+    { id: "interop", title: content.sections[1]?.title, icon: <Cpu className="w-6 h-6" />, text: content.sections[1]?.text },
+    { id: "poh", title: content.sections[2]?.title, icon: <ShieldCheck className="w-6 h-6" />, text: content.sections[2]?.text },
+    { id: "ancestral", title: content.sections[3]?.title, icon: <Users className="w-6 h-6" />, text: content.sections[3]?.text },
+    { id: "tokenomics", title: content.sections[4]?.title, icon: <Coins className="w-6 h-6" />, text: content.sections[4]?.text }
+  ].filter(s => s.title !== undefined);
 
   const tokenDistribution = [
     { label: content.distribution.items[0], percent: 40, color: "bg-foreground" },
@@ -31,7 +31,7 @@ export default function Whitepaper() {
     { label: content.distribution.items[2], percent: 15, color: "bg-foreground/50" },
     { label: content.distribution.items[3], percent: 10, color: "bg-foreground/30" },
     { label: content.distribution.items[4], percent: 5, color: "bg-foreground/20" }
-  ];
+  ].filter(item => item.label !== undefined);
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-foreground selection:text-background">
