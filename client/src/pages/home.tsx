@@ -240,13 +240,13 @@ export default function Home() {
   const content = t[lang];
 
   const timelineData = [
-    { year: content.timeline.events[0].year, title: content.timeline.events[0].title, description: content.timeline.events[0].desc, icon: <History className="w-6 h-6" />, color: "border-muted" },
-    { year: content.timeline.events[1].year, title: content.timeline.events[1].title, description: content.timeline.events[1].desc, icon: <Globe className="w-6 h-6" />, color: "border-muted" },
-    { year: content.timeline.events[2].year, title: content.timeline.events[2].title, description: content.timeline.events[2].desc, icon: <History className="w-6 h-6" />, color: "border-muted" },
-    { year: content.timeline.events[3].year, title: content.timeline.events[3].title, description: content.timeline.events[3].desc, icon: <Zap className="w-6 h-6" />, color: "border-muted" },
-    { year: content.timeline.events[4].year, title: content.timeline.events[4].title, description: content.timeline.events[4].desc, icon: <Cpu className="w-6 h-6" />, color: "border-foreground" },
-    { year: content.timeline.events[5].year, title: content.timeline.events[5].title, description: content.timeline.events[5].desc, icon: <Infinity className="w-6 h-6" />, color: "border-foreground shadow-[0_0_20px_rgba(255,255,255,0.1)]" }
-  ];
+    { year: content.timeline.events[0]?.year, title: content.timeline.events[0]?.title, description: content.timeline.events[0]?.desc, icon: <History className="w-6 h-6" />, color: "border-muted" },
+    { year: content.timeline.events[1]?.year, title: content.timeline.events[1]?.title, description: content.timeline.events[1]?.desc, icon: <Globe className="w-6 h-6" />, color: "border-muted" },
+    { year: content.timeline.events[2]?.year, title: content.timeline.events[2]?.title, description: content.timeline.events[2]?.desc, icon: <History className="w-6 h-6" />, color: "border-muted" },
+    { year: content.timeline.events[3]?.year, title: content.timeline.events[3]?.title, description: content.timeline.events[3]?.desc, icon: <Zap className="w-6 h-6" />, color: "border-muted" },
+    { year: content.timeline.events[4]?.year, title: content.timeline.events[4]?.title, description: content.timeline.events[4]?.desc, icon: <Cpu className="w-6 h-6" />, color: "border-foreground" },
+    { year: content.timeline.events[5]?.year, title: content.timeline.events[5]?.title, description: content.timeline.events[5]?.desc, icon: <Infinity className="w-6 h-6" />, color: "border-foreground shadow-[0_0_20px_rgba(255,255,255,0.1)]" }
+  ].filter(item => item.year !== undefined);
 
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
