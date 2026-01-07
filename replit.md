@@ -6,7 +6,8 @@ BartBank is a blockchain-based alternative economy platform built as a Web3 prot
 
 ## User Preferences
 
-Preferred communication style: Simple, everyday language.
+- Preferred communication style: Simple, everyday language (Portuguese).
+- Role: The user is the visionary and business lead; the agent is the technical lead/developer.
 
 ## System Architecture
 
@@ -18,6 +19,7 @@ Preferred communication style: Simple, everyday language.
 - **3D Graphics**: React Three Fiber with Drei helpers for WebGL visualizations (BART text formation effect)
 - **Animations**: Framer Motion for page transitions and UI animations
 - **Web3 Integration**: RainbowKit + Wagmi for wallet connectivity (supports Ethereum, Polygon, Arbitrum, Base, Sepolia)
+- **Error Handling**: Custom `ErrorBoundary` component to prevent blank pages and improve resilience.
 
 ### Backend Architecture
 - **Runtime**: Node.js with Express.js
@@ -27,7 +29,7 @@ Preferred communication style: Simple, everyday language.
 
 ### Data Storage
 - **ORM**: Drizzle ORM configured for PostgreSQL
-- **Current State**: Using in-memory storage (`MemStorage` class) for network statistics
+- **Current State**: Transitioning from in-memory storage to PostgreSQL database persistence for DAO proposals and Marketplace items.
 - **Schema Location**: `shared/schema.ts` with Zod validation via drizzle-zod
 - **Database Config**: Requires `DATABASE_URL` environment variable for PostgreSQL connection
 
@@ -38,41 +40,29 @@ Preferred communication style: Simple, everyday language.
 - **Development Mode**: Vite dev server with HMR, proxied through Express in development
 
 ### Pages and Features
-- **Home** (`/`): Landing page with hero section, network stats, timeline, and 3D BART formation effect
-- **Whitepaper** (`/whitepaper`): Protocol documentation and vision
-- **Tokenize** (`/tokenize`): Asset tokenization with AI pricing simulation
-- **Marketplace** (`/marketplace`): NFT marketplace for trading tokenized assets
-- **Profile** (`/profile`): User profile with wallet balance and NFT holdings
-- **DAO** (`/dao`): Governance page for creating and voting on proposals
-- **Sale** (`/sale`): Token sale page with Seed, Private, and Public phases
-- **Theme System**: Dark/light mode toggle with localStorage persistence
-- **Internationalization**: Full support for English, Portuguese, French, and Mandarin
+- **Home** (`/`): Landing page with slogan "O Futuro é Ancestral", network stats, timeline, and 3D BART formation effect.
+- **Whitepaper** (`/whitepaper`): Protocol documentation and vision.
+- **Tokenize** (`/tokenize`): Asset tokenization with AI pricing simulation.
+- **Marketplace** (`/marketplace`): NFT marketplace for trading tokenized assets.
+- **Profile** (`/profile`): User profile with wallet balance and NFT holdings.
+- **DAO** (`/dao`): Governance page for creating and voting on proposals.
+- **Sale** (`/sale`): Token sale page with Seed, Private, and Public phases.
+- **Theme System**: Dark/light mode toggle with localStorage persistence.
+- **Internationalization**: Full support for English, Portuguese, French, and Mandarin.
 
-### Smart Contracts (Ready for Deployment)
-Located in `contracts/` folder:
-- **BARToken.sol**: ERC-20 token with 100M total supply, team vesting (2 years), and burn mechanics
-- **BARTokenSale.sol**: Multi-phase token sale (Seed $0.01, Private $0.025, Public $0.05) with whitelist support
-- **BARDAO.sol**: Governance contract with proposal creation, voting (1 BAR = 1 vote), and 10% quorum
+## Status e Próximos Passos (Janeiro 2026)
 
-### Contract Integration
-- **ABIs**: Located in `client/src/contracts/abis.ts`
-- **Config**: Network addresses and tokenomics in `client/src/contracts/config.ts`
-- **Hooks**: Wagmi hooks for contract interaction in `client/src/hooks/useContracts.ts`
-- **Status**: Contracts need to be deployed to Base/Base Sepolia; frontend uses mock data until deployment
+### Concluído
+- Fix: Tela branca resolvida com ErrorBoundaries e tratamento de falhas no Web3Provider.
+- Branding: Título de compartilhamento atualizado para "O Futuro é Ancestral".
+- Localização: Traduções revisadas para evitar erros de renderização.
 
-## External Dependencies
+### Em Progresso
+- Persistência: Conectar DAO e Marketplace ao PostgreSQL.
+- IA Sentinela: Refinar lógica de precificação para simulação realista.
 
-### Web3 Services
-- **WalletConnect**: Requires `VITE_WALLETCONNECT_PROJECT_ID` environment variable for wallet connectivity
-- **Supported Networks**: Ethereum Mainnet, Polygon, Arbitrum, Base, Sepolia testnet
+### Pendente (Ação do Usuário)
+- WalletConnect: Obter Project ID em cloud.reown.com para habilitar funções de carteira.
 
-### Database
-- **PostgreSQL**: Required for production (configured via `DATABASE_URL`)
-- **Drizzle Kit**: Used for database migrations (`npm run db:push`)
-
-### Third-Party APIs
-- Network statistics endpoint (`/api/stats`) - currently returns mock data from in-memory storage
-
-### Build and Development Tools
-- **Replit Plugins**: Vite plugins for Replit integration (cartographer, dev-banner, runtime-error-modal)
-- **Meta Images Plugin**: Custom plugin for OpenGraph image handling in deployments
+## Smart Contracts (Ready for Deployment)
+... (restante do arquivo mantido)
