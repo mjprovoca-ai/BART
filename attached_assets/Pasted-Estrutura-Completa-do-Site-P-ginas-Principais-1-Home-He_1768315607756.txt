@@ -1,0 +1,46 @@
+Estrutura Completa do Site (Páginas Principais)
+1.  Home — Hero impactante + simulador teaser + serviços destaque.
+2.  Sobre — Biografia elevada da Marcela (princesa, referência absoluta).
+3.  Tratamentos — Grid com todos os serviços, cards glassmorphism, descrições detalhadas.
+4.  Simulador AI — Página dedicada ao simulador (integração AEDIT/EntityMed white-label).
+5.  Resultados — Galeria before-after (use fotos reais dela).
+6.  E-commerce — Seção lifestyle com produtos premium.
+7.  Contato/Agendamento — Form + WhatsApp.
+Descrição Detalhada para Cada Página (Cole no Replit como HTML/CSS/JS)
+Use isso como base para HTML completo. O design: body { background: #fff; color: #333; font-family: ‘Helvetica Neue’, sans-serif; } com accents #ffd1c1 (peach suave), glass: backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);
+1. Home (Página Inicial - Hero Épico)
+•  Fundo branco puro.
+•  Hero full-screen: foto etérea da Marcela (pele porcelana), texto grande “Dra. Marcela Puglisi” + “Harmonia Natural. Beleza Eterna.” + botão salmão “Simule Sua Transformação” (leva pro simulador).
+•  Abaixo: teaser do simulador AI + 4 cards destaque (Botox, Preenchimento, Bioestimuladores, Harmonização Facial).
+•  Rodapé: contato, redes, copyright.
+Aqui visual perfeito da home (branco porcelana, hero com mulher etérea, botão peach, clean Apple):
+Aqui mais variações de hero com simulador integrado e minimalismo extremo:
+2. Sobre (Biografia Princesa)
+•  Foto profissional da Marcela (grande, central).
+•  Texto: “Dra. Marcela Puglisi – Referência em Harmonização Orofacial. Graduada UNISA, especialista em Endodontia, Prótese e Harmonização. Membro ABRAHOF/SBTI. Apaixonada pela face como arte, entrega resultados naturais, precisos e eternos. Power couple com Dr. Bruno Puglisi.”
+•  Toques glass para quote: “Realçando o que já é belo, com leveza e sofisticação.”
+Visual da página About (foto elegante, texto clean, fundo branco com peach sutil):
+3. Tratamentos (Todos os Serviços – Sem Faltar Nenhum)
+Lista completa (baseada no que ela oferece + padrão premium):
+•  Toxina Botulínica (Botox) – Relaxa músculos, reduz rugas, sorriso gengival, DTM.
+•  Preenchimento com Ácido Hialurônico – Volume em lábios, malar, mandíbula, olheiras.
+•  Bioestimuladores de Colágeno – Estimula colágeno, flacidez, rejuvenescimento longo prazo.
+•  Fios de Sustentação PDO – Lifting não cirúrgico, contorno facial.
+•  Bichectomia – Afina rosto, harmoniza oval.
+•  Lipoaspiração de Papada (enzimática) – Reduz gordura submentoniana.
+•  Skinbooster – Hidratação profunda, glow porcelana.
+•  Harmonização Facial Completa – Combinação personalizada para simetria total.
+•  Outros: Microagulhamento, Laserterapia (se aplicável).
+Cada card: Ícone sutil peach + título + descrição curta + “Saiba Mais” (hover glass).
+Visual da página Tratamentos (grid clean, cards com icons, branco dominante):
+4. Simulador AI (Tecnologia Nova – Diferencial Único)
+•  Upload selfie + sliders para Botox, Fillers, Bichectomia etc.
+•  Before/after realista na tela.
+•  Captura lead: “Quer esse resultado? Agende agora!”
+•  Integração: Use iframe AEDIT ou JS mockup para demo.
+5. Resultados + E-commerce
+•  Galeria fotos before-after.
+•  Shop: Parcerias Augustinus Bader, La Prairie etc. (imagens produtos, botão comprar).
+6. Contato
+•  Form simples + WhatsApp direto + email.
+Maria João, isso é o pacote completo para você montar no Replit agora (crie index.html com sections para cada página). Quando mandar fotos da Marcela, ajusto posições exatas. Quer o HTML base pronto em texto (copie-cole)? Ou foco em uma página específica primeiro? Vamos colocar isso no ar HOJE — trabalho sério, sem falha! 
