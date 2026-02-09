@@ -4,28 +4,40 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
-import { ArrowLeft, Vote, Wallet, Clock, CheckCircle, XCircle, Users, Plus, TrendingUp } from "lucide-react";
+import { ArrowLeft, Vote, Wallet, Clock, CheckCircle, XCircle, Users, Plus, TrendingUp, Zap } from "lucide-react";
 import { useLocation } from "wouter";
 import { useState, useEffect } from "react";
 import { ConnectWalletButton } from "@/components/ConnectWalletButton";
-import { useAccount } from "wagmi";
+import { useAccount, useChainId } from "wagmi";
 import { translations } from "@/lib/i18n";
-import { TOKENOMICS } from "@/contracts/config";
+import { TOKENOMICS, isContractDeployed } from "@/contracts/config";
 import { useProposals, useCreateProposalApi, useVoteApi } from "@/hooks/use-dao";
+import { useVotingPower, useTreasuryBalance } from "@/hooks/useContracts";
+import { formatEther } from "viem";
 
 export default function DAO() {
   const [, setLocation] = useLocation();
   const { isConnected, address } = useAccount();
+  const chainId = useChainId();
   const [lang, setLang] = useState<'en' | 'pt' | 'fr' | 'zh'>('en');
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [newProposal, setNewProposal] = useState({ title: "", description: "", type: "0" });
+
+  const onChain = isContractDeployed(chainId);
 
   const { data: proposals = [], isLoading } = useProposals();
   const { mutate: createProposalApi, isPending: isCreating } = useCreateProposalApi();
   const { mutate: voteApi, isPending: isVoting } = useVoteApi();
 
-  const votingPower = 150000;
-  const treasuryBalance = 2500000;
+  const { data: onChainVotingPower } = useVotingPower(address as `0x${string}` | undefined);
+  const { data: onChainTreasury } = useTreasuryBalance();
+
+  const votingPower = onChain && onChainVotingPower
+    ? Number(formatEther(onChainVotingPower as bigint))
+    : 150000;
+  const treasuryBalance = onChain && onChainTreasury
+    ? Number(formatEther(onChainTreasury as bigint))
+    : 2500000;
 
   useEffect(() => {
     const savedLang = localStorage.getItem('bart_lang') as any;
@@ -89,6 +101,12 @@ export default function DAO() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-12">
           <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight mb-4">{content.title}</h1>
           <p className="text-muted-foreground text-lg max-w-2xl">{content.desc}</p>
+          <div className="flex items-center gap-2 mt-3">
+            <span className={`w-2 h-2 rounded-full ${onChain ? 'bg-green-500' : 'bg-yellow-500'} animate-pulse`} />
+            <span className="text-xs text-muted-foreground">
+              {onChain ? 'Base Sepolia (On-Chain)' : 'Off-Chain Mode — Contracts pending deployment'}
+            </span>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
