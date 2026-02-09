@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { ConnectWalletButton } from "@/components/ConnectWalletButton";
 import { useAccount } from "wagmi";
 import { translations } from "@/lib/i18n";
+import { useMarketplaceItems } from "@/hooks/use-marketplace";
 
 const categoriesList = [
   { value: "all", label: { en: "All Categories", pt: "Todas Categorias", fr: "Toutes les catégories", zh: "所有类别" }, icon: "🌐" },
@@ -32,8 +33,10 @@ export default function Marketplace() {
   const { isConnected } = useAccount();
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
-  const [selectedListing, setSelectedListing] = useState<typeof mockListings[0] | null>(null);
+  const [selectedListing, setSelectedListing] = useState<any>(null);
   const [lang, setLang] = useState<'en' | 'pt' | 'fr' | 'zh'>('en');
+
+  const { data: dbItems = [] } = useMarketplaceItems();
 
   useEffect(() => {
     const savedLang = localStorage.getItem('bart_lang') as any;
@@ -43,7 +46,20 @@ export default function Marketplace() {
   const content = translations[lang].marketplace;
   const navContent = translations[lang].nav;
 
-  const filteredListings = mockListings.filter(listing => {
+  const dbListings = dbItems.map((item: any) => ({
+    id: `db-${item.id}`,
+    title: item.name,
+    category: item.category,
+    price: parseFloat(item.price) || 0,
+    image: item.image,
+    seller: item.seller?.slice(0, 6) + "..." + item.seller?.slice(-4),
+    likes: Math.floor(Math.random() * 50),
+    timeAgo: "new",
+  }));
+
+  const allListings = [...dbListings, ...mockListings];
+
+  const filteredListings = allListings.filter(listing => {
     const matchesSearch = listing.title.toLowerCase().includes(search.toLowerCase());
     const matchesCategory = category === "all" || listing.category === category;
     return matchesSearch && matchesCategory;

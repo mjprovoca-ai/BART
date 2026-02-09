@@ -8,70 +8,24 @@ import { ArrowLeft, Vote, Wallet, Clock, CheckCircle, XCircle, Users, Plus, Tren
 import { useLocation } from "wouter";
 import { useState, useEffect } from "react";
 import { ConnectWalletButton } from "@/components/ConnectWalletButton";
-import { useAccount, useChainId } from "wagmi";
+import { useAccount } from "wagmi";
 import { translations } from "@/lib/i18n";
-import { TOKENOMICS, isContractDeployed } from "@/contracts/config";
-import { useVotingPower, useProposalCount, useTreasuryBalance, useVote, useCreateProposal } from "@/hooks/useContracts";
-import { formatEther } from "viem";
-
-const mockProposals = [
-  {
-    id: 1,
-    title: "Allocate 500,000 BAR for Marketing Campaign",
-    description: "Proposal to use treasury funds for a global marketing campaign across social media platforms.",
-    proposer: "0x1234...5678",
-    type: 0,
-    forVotes: 2500000,
-    againstVotes: 800000,
-    abstainVotes: 200000,
-    startTime: Date.now() / 1000 - 86400 * 2,
-    endTime: Date.now() / 1000 + 86400 * 5,
-    state: 1
-  },
-  {
-    id: 2,
-    title: "Partnership with DeFi Protocol XYZ",
-    description: "Strategic partnership proposal to integrate BAR token with XYZ protocol for yield farming.",
-    proposer: "0xABCD...EFGH",
-    type: 1,
-    forVotes: 1800000,
-    againstVotes: 1200000,
-    abstainVotes: 500000,
-    startTime: Date.now() / 1000 - 86400 * 1,
-    endTime: Date.now() / 1000 + 86400 * 6,
-    state: 1
-  }
-];
+import { TOKENOMICS } from "@/contracts/config";
+import { useProposals, useCreateProposalApi, useVoteApi } from "@/hooks/use-dao";
 
 export default function DAO() {
   const [, setLocation] = useLocation();
   const { isConnected, address } = useAccount();
-  const chainId = useChainId();
   const [lang, setLang] = useState<'en' | 'pt' | 'fr' | 'zh'>('en');
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [newProposal, setNewProposal] = useState({ title: "", description: "", type: "0" });
 
-  const contractsDeployed = isContractDeployed(chainId);
+  const { data: proposals = [], isLoading } = useProposals();
+  const { mutate: createProposalApi, isPending: isCreating } = useCreateProposalApi();
+  const { mutate: voteApi, isPending: isVoting } = useVoteApi();
 
-  const { data: votingPowerData } = useVotingPower(address);
-  const { data: proposalCountData } = useProposalCount();
-  const { data: treasuryBalanceData } = useTreasuryBalance();
-  const { vote, isPending: isVoting } = useVote();
-  const { createProposal, isPending: isCreating } = useCreateProposal();
-
-  const votingPower = contractsDeployed && votingPowerData 
-    ? Number(formatEther(votingPowerData as bigint)) 
-    : 150000;
-  
-  const treasuryBalance = contractsDeployed && treasuryBalanceData 
-    ? Number(formatEther(treasuryBalanceData as bigint)) 
-    : 2500000;
-    
-  const activeProposalCount = contractsDeployed && proposalCountData 
-    ? Number(proposalCountData) 
-    : mockProposals.length;
-
-  const proposals = mockProposals;
+  const votingPower = 150000;
+  const treasuryBalance = 2500000;
 
   useEffect(() => {
     const savedLang = localStorage.getItem('bart_lang') as any;
@@ -81,41 +35,35 @@ export default function DAO() {
   const content = translations[lang].dao;
   const navContent = translations[lang].nav;
 
-  const getProposalTypeName = (type: number) => {
-    const types = [content.proposal_types.fund, content.proposal_types.partnership, content.proposal_types.protocol, content.proposal_types.other];
-    return types[type] || types[3];
-  };
-
-  const getTimeRemaining = (endTime: number) => {
-    const now = Date.now() / 1000;
-    const remaining = endTime - now;
+  const getTimeRemaining = (endTime: string | number) => {
+    const endMs = typeof endTime === 'string' ? new Date(endTime).getTime() : endTime * 1000;
+    const remaining = (endMs - Date.now()) / 1000;
     if (remaining <= 0) return "0";
     return Math.ceil(remaining / 86400).toString();
   };
 
-  const getVotePercentage = (forVotes: number, againstVotes: number, abstainVotes: number) => {
-    const total = forVotes + againstVotes + abstainVotes;
-    if (total === 0) return { for: 0, against: 0, abstain: 0 };
+  const getVotePercentage = (forVotes: number, againstVotes: number) => {
+    const total = forVotes + againstVotes;
+    if (total === 0) return { for: 50, against: 50 };
     return {
       for: Math.round((forVotes / total) * 100),
       against: Math.round((againstVotes / total) * 100),
-      abstain: Math.round((abstainVotes / total) * 100)
     };
   };
 
-  const handleVote = (proposalId: number, support: 0 | 1 | 2) => {
-    if (contractsDeployed) {
-      vote(proposalId, support);
-    }
+  const handleVote = (proposalId: number, voteType: "for" | "against") => {
+    voteApi({ id: proposalId, voteType });
   };
 
   const handleCreateProposal = () => {
-    if (contractsDeployed && newProposal.title && newProposal.description) {
-      createProposal(
-        parseInt(newProposal.type),
-        newProposal.title,
-        newProposal.description
-      );
+    if (newProposal.title && newProposal.description && address) {
+      const endTime = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+      createProposalApi({
+        title: newProposal.title,
+        description: newProposal.description,
+        creator: address,
+        endTime,
+      });
       setShowCreateModal(false);
       setNewProposal({ title: "", description: "", type: "0" });
     }
@@ -141,9 +89,6 @@ export default function DAO() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-12">
           <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight mb-4">{content.title}</h1>
           <p className="text-muted-foreground text-lg max-w-2xl">{content.desc}</p>
-          {!contractsDeployed && (
-            <p className="text-xs text-yellow-500 mt-2">Demo mode - contracts not yet deployed</p>
-          )}
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -165,7 +110,7 @@ export default function DAO() {
               </div>
               <span className="text-sm text-muted-foreground">{content.proposals}</span>
             </div>
-            <div className="text-3xl font-display font-bold" data-testid="text-active-proposals">{activeProposalCount}</div>
+            <div className="text-3xl font-display font-bold" data-testid="text-active-proposals">{proposals.length}</div>
             <div className="text-sm text-muted-foreground mt-1">10% {content.quorum}</div>
           </motion.div>
 
@@ -198,15 +143,20 @@ export default function DAO() {
         <div className="space-y-6">
           <h2 className="text-2xl font-display font-bold">{content.proposals}</h2>
           
-          {proposals.length === 0 ? (
+          {isLoading ? (
+            <div className="text-center py-20 bg-foreground/5 rounded-2xl border border-white/5">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full border-2 border-foreground border-t-transparent animate-spin" />
+              <p className="text-muted-foreground">Loading...</p>
+            </div>
+          ) : proposals.length === 0 ? (
             <div className="text-center py-20 bg-foreground/5 rounded-2xl border border-white/5">
               <Vote className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
               <h3 className="text-xl font-bold mb-2">{content.no_proposals}</h3>
               <p className="text-muted-foreground">{content.no_proposals_desc}</p>
             </div>
           ) : (
-            proposals.map((proposal, idx) => {
-              const percentages = getVotePercentage(proposal.forVotes, proposal.againstVotes, proposal.abstainVotes);
+            proposals.map((proposal: any, idx: number) => {
+              const percentages = getVotePercentage(proposal.votesFor || 0, proposal.votesAgainst || 0);
               const daysRemaining = getTimeRemaining(proposal.endTime);
               
               return (
@@ -222,7 +172,7 @@ export default function DAO() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-xs px-2 py-1 bg-foreground/10 rounded-full">
-                          {getProposalTypeName(proposal.type)}
+                          {proposal.status === "active" ? "Active" : proposal.status}
                         </span>
                         <span className="text-xs text-muted-foreground flex items-center gap-1">
                           <Clock className="w-3 h-3" />
@@ -232,7 +182,7 @@ export default function DAO() {
                       <h3 className="text-xl font-bold mb-2">{proposal.title}</h3>
                       <p className="text-sm text-muted-foreground mb-4">{proposal.description}</p>
                       <p className="text-xs text-muted-foreground">
-                        Proposer: <span className="font-mono">{proposal.proposer}</span>
+                        Proposer: <span className="font-mono">{proposal.creator?.slice(0, 6)}...{proposal.creator?.slice(-4)}</span>
                       </p>
                     </div>
                   </div>
@@ -248,25 +198,17 @@ export default function DAO() {
                       <Progress value={percentages.against} className="flex-1 h-2" />
                       <span className="text-sm font-mono w-12 text-right">{percentages.against}%</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm w-20">{content.vote_abstain}</span>
-                      <Progress value={percentages.abstain} className="flex-1 h-2" />
-                      <span className="text-sm font-mono w-12 text-right">{percentages.abstain}%</span>
-                    </div>
                   </div>
 
                   {isConnected ? (
                     <div className="flex gap-3">
-                      <Button className="flex-1 rounded-full bg-green-600 hover:bg-green-700" disabled={isVoting} onClick={() => handleVote(proposal.id, 1)} data-testid={`button-vote-for-${proposal.id}`}>
+                      <Button className="flex-1 rounded-full bg-green-600 hover:bg-green-700" disabled={isVoting} onClick={() => handleVote(proposal.id, "for")} data-testid={`button-vote-for-${proposal.id}`}>
                         <CheckCircle className="w-4 h-4 mr-2" />
                         {content.vote_for}
                       </Button>
-                      <Button variant="outline" className="flex-1 rounded-full border-red-500 text-red-500 hover:bg-red-500/10" disabled={isVoting} onClick={() => handleVote(proposal.id, 0)} data-testid={`button-vote-against-${proposal.id}`}>
+                      <Button variant="outline" className="flex-1 rounded-full border-red-500 text-red-500 hover:bg-red-500/10" disabled={isVoting} onClick={() => handleVote(proposal.id, "against")} data-testid={`button-vote-against-${proposal.id}`}>
                         <XCircle className="w-4 h-4 mr-2" />
                         {content.vote_against}
-                      </Button>
-                      <Button variant="outline" className="rounded-full" disabled={isVoting} onClick={() => handleVote(proposal.id, 2)} data-testid={`button-vote-abstain-${proposal.id}`}>
-                        {content.vote_abstain}
                       </Button>
                     </div>
                   ) : (
