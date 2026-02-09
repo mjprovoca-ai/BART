@@ -65,32 +65,77 @@ export default function Tokenize() {
     }
   };
 
+  const categoryPricing: Record<string, { min: number; max: number; multiplier: number }> = {
+    service: { min: 200, max: 800, multiplier: 1.2 },
+    product: { min: 50, max: 500, multiplier: 1.0 },
+    digital: { min: 100, max: 1200, multiplier: 1.5 },
+    experience: { min: 300, max: 1500, multiplier: 1.8 },
+    accommodation: { min: 500, max: 3000, multiplier: 2.0 },
+    transport: { min: 200, max: 2000, multiplier: 1.6 },
+    food: { min: 30, max: 400, multiplier: 0.9 },
+    other: { min: 50, max: 600, multiplier: 1.0 },
+  };
+
   const simulateAIAnalysis = async () => {
     setStep("analyzing");
     
-    const analysisSteps = lang === 'pt' ? [
-      "Iniciando análise do ativo...",
-      "Verificando autenticidade humana...",
-      "Calculando valor de mercado...",
-      "Aplicando algoritmo de precificação...",
-      "Consultando rede de validadores...",
-      "Finalizando tokenização..."
-    ] : [
-      "Starting asset analysis...",
-      "Verifying human authenticity...",
-      "Calculating market value...",
-      "Applying pricing algorithm...",
-      "Consulting validator network...",
-      "Finalizing tokenization..."
-    ];
+    const stepsMap: Record<string, string[]> = {
+      pt: [
+        "Iniciando análise do ativo...",
+        "Verificando autenticidade humana via Proof-of-Humanity...",
+        "Escaneando metadados e categoria: " + (categories.find(c => c.value === asset.category)?.label.pt || ""),
+        "Consultando índice de mercado descentralizado...",
+        "Aplicando algoritmo IA Sentinela v2.0...",
+        "Calibrando valor com base em oferta/demanda da rede...",
+        "Validando com 12 nós da rede BART...",
+        "Finalizando tokenização..."
+      ],
+      en: [
+        "Starting asset analysis...",
+        "Verifying human authenticity via Proof-of-Humanity...",
+        "Scanning metadata and category: " + (categories.find(c => c.value === asset.category)?.label.en || ""),
+        "Consulting decentralized market index...",
+        "Applying AI Sentinel v2.0 algorithm...",
+        "Calibrating value based on network supply/demand...",
+        "Validating with 12 BART network nodes...",
+        "Finalizing tokenization..."
+      ],
+      fr: [
+        "Démarrage de l'analyse...",
+        "Vérification de l'authenticité humaine...",
+        "Analyse des métadonnées et catégorie...",
+        "Consultation de l'indice de marché décentralisé...",
+        "Application de l'algorithme IA Sentinelle v2.0...",
+        "Calibrage de la valeur...",
+        "Validation avec 12 nœuds du réseau BART...",
+        "Finalisation de la tokenisation..."
+      ],
+      zh: [
+        "开始资产分析...",
+        "通过人性证明验证真实性...",
+        "扫描元数据和类别...",
+        "查询去中心化市场指数...",
+        "应用AI哨兵v2.0算法...",
+        "基于网络供需校准价值...",
+        "与12个BART网络节点验证...",
+        "完成代币化..."
+      ]
+    };
+
+    const analysisSteps = stepsMap[lang] || stepsMap.en;
 
     for (let i = 0; i < analysisSteps.length; i++) {
       setAnalysisText(analysisSteps[i]);
-      await new Promise(r => setTimeout(r, 800));
+      await new Promise(r => setTimeout(r, 600 + Math.random() * 400));
     }
 
-    const baseValue = Math.floor(Math.random() * 500) + 100;
-    const finalValue = Math.floor(baseValue * 1.5);
+    const pricing = categoryPricing[asset.category] || categoryPricing.other;
+    const descLength = asset.description.length;
+    const descFactor = Math.min(descLength / 200, 1.5);
+    const hasImage = asset.image ? 1.3 : 1.0;
+    const baseValue = pricing.min + Math.random() * (pricing.max - pricing.min);
+    const finalValue = Math.round(baseValue * pricing.multiplier * descFactor * hasImage);
+    
     setBarValue(finalValue);
     setStep("pricing");
   };
