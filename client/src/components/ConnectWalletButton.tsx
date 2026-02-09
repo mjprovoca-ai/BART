@@ -1,21 +1,7 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { Button } from '@/components/ui/button';
-import { hasValidProjectId } from '@/lib/wagmi';
 
 export function ConnectWalletButton({ label = "Conectar Carteira" }: { label?: string }) {
-  if (!hasValidProjectId) {
-    return (
-      <Button 
-        variant="outline" 
-        className="rounded-full px-6 opacity-50 cursor-not-allowed"
-        disabled
-        data-testid="button-connect-wallet-disabled"
-      >
-        {label}
-      </Button>
-    );
-  }
-
   return (
     <ConnectButton.Custom>
       {({
