@@ -1,25 +1,14 @@
 import { getDefaultConfig } from '@rainbow-me/rainbowkit';
 import { mainnet, polygon, arbitrum, base, sepolia } from 'wagmi/chains';
-import { createConfig, http } from 'wagmi';
 
-const projectId = import.meta.env.VITE_WALLETCONNECT_PROJECT_ID;
+const projectId = import.meta.env.VITE_WALLETCONNECT_PROJECT_ID || '';
 
-export const hasValidProjectId = !!projectId && projectId.length > 10;
+export const hasValidProjectId = !!projectId && projectId.length > 5;
 
-if (!hasValidProjectId) {
-  console.warn('[BART] WalletConnect Project ID not configured. Wallet features will be disabled.');
-}
+const fallbackProjectId = 'bartbank_placeholder_id';
 
-export const config = hasValidProjectId 
-  ? getDefaultConfig({
-      appName: 'BART Protocol',
-      projectId: projectId,
-      chains: [mainnet, polygon, arbitrum, base, sepolia],
-    })
-  : createConfig({
-      chains: [mainnet, base],
-      transports: {
-        [mainnet.id]: http(),
-        [base.id]: http(),
-      },
-    });
+export const config = getDefaultConfig({
+  appName: 'BART Protocol',
+  projectId: hasValidProjectId ? projectId : fallbackProjectId,
+  chains: [mainnet, polygon, arbitrum, base, sepolia],
+});
