@@ -167,10 +167,10 @@ Distribuído sob a licença MIT. Veja `LICENSE` para mais detalhes.
 
 ## 👥 Autores
 
-- **Visão & Negócio**: Você
-- **Desenvolvimento Técnico**: Replit Agent
+- **Visão & Negócio**: Maria Joao Abujamra  
+- **Desenvolvimento Técnico**: Maria Joao Abujamra em Replit 
 
-## 📞 Contato
+## 📞 Contato 5511-945686070
 
 Para dúvidas ou sugestões, abra uma [Issue](https://github.com/seu-username/bartbank-protocol/issues).
 
