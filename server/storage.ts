@@ -3,9 +3,9 @@ import {
   type MarketplaceItem, type InsertMarketplaceItem,
   type DaoProposal, type InsertDaoProposal,
   networkStats, marketplaceItems, daoProposals
-} from "@shared/schema";
+} from "../shared/schema";
 import { db } from "./db";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, sql } from "drizzle-orm";
 
 export interface IStorage {
   getLatestNetworkStats(): Promise<NetworkStats>;
@@ -18,7 +18,7 @@ export interface IStorage {
   // DAO
   getAllProposals(): Promise<DaoProposal[]>;
   createProposal(proposal: InsertDaoProposal): Promise<DaoProposal>;
-  voteOnProposal(id: number, voteType: "for" | "against"): Promise<DaoProposal>;
+  voteOnProposal(id: number, voteType: "for" | "against"): Promise<DaoProposal | undefined>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -60,13 +60,11 @@ export class DatabaseStorage implements IStorage {
     return newProposal;
   }
 
-  async voteOnProposal(id: number, voteType: "for" | "against"): Promise<DaoProposal> {
-    const [proposal] = await db.select().from(daoProposals).where(eq(daoProposals.id, id));
-    if (!proposal) throw new Error("Proposal not found");
-
-    const update = voteType === "for" 
-      ? { votesFor: proposal.votesFor + 1 }
-      : { votesAgainst: proposal.votesAgainst + 1 };
+  async voteOnProposal(id: number, voteType: "for" | "against"): Promise<DaoProposal | undefined> {
+    // Increment in the database so two simultaneous votes are both counted.
+    const update = voteType === "for"
+      ? { votesFor: sql`${daoProposals.votesFor} + 1` }
+      : { votesAgainst: sql`${daoProposals.votesAgainst} + 1` };
 
     const [updated] = await db.update(daoProposals)
       .set(update)

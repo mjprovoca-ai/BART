@@ -3,6 +3,7 @@ import { Text3D, Center, Sparkles, Float, Environment, PerspectiveCamera } from 
 import { useRef, useState, useMemo, useEffect, Suspense } from "react";
 import * as THREE from "three";
 import { motion } from "framer-motion";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 function Particles({ count = 200 }) {
   const points = useMemo(() => {
@@ -53,7 +54,7 @@ function BartText({ isMobile }: { isMobile: boolean }) {
       <Center>
         <Text3D
           ref={meshRef}
-          font="https://threejs.org/examples/fonts/helvetiker_bold.typeface.json"
+          font="/fonts/helvetiker_bold.typeface.json"
           size={textSize}
           height={0.4}
           curveSegments={12}
@@ -157,6 +158,8 @@ export default function BartFormation() {
   return (
     <div className="w-full h-[400px] sm:h-[500px] md:h-[600px] relative overflow-hidden bg-gradient-to-b from-transparent to-background/20 rounded-xl border border-white/10">
       <div className="absolute inset-0 z-0">
+        {/* If a 3D asset fails to load, show the flat BART instead of breaking the page. */}
+        <ErrorBoundary fallback={<FallbackDisplay />}>
         <Canvas 
           gl={{ antialias: true, alpha: true, failIfMajorPerformanceCaveat: false }}
           onCreated={() => {}}
@@ -166,6 +169,7 @@ export default function BartFormation() {
             <Scene isMobile={isMobile} />
           </Suspense>
         </Canvas>
+        </ErrorBoundary>
       </div>
       
       <div className="absolute bottom-6 sm:bottom-8 left-0 right-0 text-center pointer-events-none z-10">
