@@ -1,6 +1,19 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import { z } from "zod";
 import { storage } from "./storage";
+import {
+  insertMarketplaceItemSchema,
+  insertDaoProposalSchema,
+} from "../shared/schema";
+
+// Only the fields a visitor may set. Vote counts and status always start at
+// their defaults; endTime arrives as an ISO string over JSON.
+const createProposalSchema = insertDaoProposalSchema
+  .pick({ title: true, description: true, creator: true })
+  .extend({ endTime: z.coerce.date() });
+
+const voteSchema = z.object({ voteType: z.enum(["for", "against"]) });
 
 export async function registerRoutes(
   httpServer: Server,
@@ -28,8 +41,12 @@ export async function registerRoutes(
   });
 
   app.post("/api/marketplace", async (req, res) => {
+    const parsed = insertMarketplaceItemSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ error: "Invalid marketplace item" });
+    }
     try {
-      const item = await storage.createMarketplaceItem(req.body);
+      const item = await storage.createMarketplaceItem(parsed.data);
       res.json(item);
     } catch (error) {
       res.status(500).json({ error: "Failed to create marketplace item" });
@@ -47,8 +64,12 @@ export async function registerRoutes(
   });
 
   app.post("/api/dao/proposals", async (req, res) => {
+    const parsed = createProposalSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ error: "Invalid proposal" });
+    }
     try {
-      const proposal = await storage.createProposal(req.body);
+      const proposal = await storage.createProposal(parsed.data);
       res.json(proposal);
     } catch (error) {
       res.status(500).json({ error: "Failed to create proposal" });
@@ -56,9 +77,16 @@ export async function registerRoutes(
   });
 
   app.post("/api/dao/proposals/:id/vote", async (req, res) => {
+    const id = Number(req.params.id);
+    const parsed = voteSchema.safeParse(req.body);
+    if (!Number.isInteger(id) || !parsed.success) {
+      return res.status(400).json({ error: "Invalid vote" });
+    }
     try {
-      const { voteType } = req.body;
-      const proposal = await storage.voteOnProposal(Number(req.params.id), voteType);
+      const proposal = await storage.voteOnProposal(id, parsed.data.voteType);
+      if (!proposal) {
+        return res.status(404).json({ error: "Proposal not found" });
+      }
       res.json(proposal);
     } catch (error) {
       res.status(500).json({ error: "Failed to vote on proposal" });
